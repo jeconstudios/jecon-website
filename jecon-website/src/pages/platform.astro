@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+<BaseLayout title="Platform" description="The JECON Platform: AI-assisted logistics management (Module B) and fleet operations (Module A, early access), with every AI action reviewed by a person.">
+
+  <section class="section-tight">
+    <div class="wrap hero-split">
+      <div>
+        <span class="eyebrow"><Icon name="layers" size={14} /> Overview</span>
+        <h1>One account. Two modules. Every AI action reviewed by a person.</h1>
+        <p class="lede">The AI reads documents, compares them against what's already on file, and proposes the next step. Nothing changes a baseline, places an order, or transfers property until someone approves it — and every action is recorded.</p>
+        <div class="btn-row">
+          <a href="/signup" class="btn">Create Account</a>
+          <a href="/pricing" class="btn secondary">View Pricing</a>
+        </div>
+      </div>
+      <div class="icon-tile" style="width:100%; height:220px; border-radius:20px;" aria-hidden="true">
+        <Icon name="bolt" size={64} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Module B · Launch priority</span>
+      <h2>Logistics Management Specialist</h2>
+      <p class="lede" style="margin-bottom: 28px;">For contractors, project teams, facilities, manufacturers, 3PLs, and anyone managing materials and property.</p>
+      <div class="grid grid-auto">
+        {[
+          { icon: 'doc', title: 'BOM intake', copy: 'Upload Excel, CSV, PDF, Word, Google Docs/Sheets, or a photo. The AI extracts it and flags low-confidence fields for review.' },
+          { icon: 'clipboard', title: 'Baseline & revisions', copy: "Lock an approved baseline, record the approver's decision and attach the signed or emailed approval, and keep every version." },
+          { icon: 'chart', title: 'Variance engine', copy: 'Quantity, cost, part number, substitution, unit-of-measure, and schedule changes, with dollar and percent impact.' },
+          { icon: 'compass', title: 'Long-lead & delivery estimates', copy: 'Configurable thresholds, each estimate labeled AI estimate, supplier-quoted, confirmed, or manual.' },
+          { icon: 'route', title: 'Procurement tracking', copy: 'From quote to stocked, with exception flags and reminders when updates go stale.' },
+          { icon: 'box', title: 'Inventory & locations', copy: 'Hierarchy from site to bin, custom location types, cycle counts, and barcode/QR labels.' },
+          { icon: 'bolt', title: 'Reorder points', copy: 'AI-suggested levels and draft reorders for your approval. It never orders on its own.' },
+          { icon: 'shield', title: 'Hand receipts & transfers', copy: 'DA 2062, DD 1149, DD 1348-1A, DD 250, and civilian templates, with signatures and chain of custody.' },
+          { icon: 'truck', title: 'Freight visibility', copy: 'Enter or upload shipments, track ETAs, and reconcile what arrived against the PO.' },
+        ].map((f) => (
+          <div class="card">
+            <div class="icon-tile"><Icon name={f.icon} /></div>
+            <h3>{f.title}</h3>
+            <p style="margin:0; font-size:0.92rem;">{f.copy}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--navy);">
+    <div class="wrap">
+      <span class="eyebrow on-dark">Module A · Early access / waitlist</span>
+      <h2 style="color:white;">AI Fleet Operations</h2>
+      <p class="lede" style="color:#cbd5e1; margin-bottom:28px;">For small and mid-size carriers, brokers, and owner-operators. Rolling out in stages after the Logistics core — choose it at signup to be notified.</p>
+      <div class="grid grid-auto">
+        {[
+          { icon: 'doc', title: 'Billing & POD extraction', copy: 'Read rate confirmations and proof-of-delivery documents and prepare invoices for review.' },
+          { icon: 'shield', title: 'Driver qualification compliance', copy: 'Track expirations and missing items before they become violations.' },
+          { icon: 'compass', title: 'Sourcing', copy: 'Support for finding loads and inbound driver candidates.' },
+          { icon: 'wrench', title: 'Maintenance & routing', copy: 'Telematics-informed service reminders and routing support.' },
+          { icon: 'chart', title: 'Settlements', copy: 'Prepare driver and owner-operator settlements for approval.' },
+        ].map((f) => (
+          <div class="card dark">
+            <div class="icon-tile on-dark"><Icon name={f.icon} /></div>
+            <h3>{f.title}</h3>
+            <p style="margin:0; font-size:0.92rem;">{f.copy}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 style="text-align:center;">How it works</h2>
+      <div class="grid grid-3" style="margin-top:24px;">
+        <div class="card">
+          <span class="stat-num" style="opacity:0.35;">01</span>
+          <h3>Create your account</h3>
+          <p style="margin:0;">Choose your account type and the services you want. Pay by card, or by PO/invoice for Enterprise/Gov.</p>
+        </div>
+        <div class="card">
+          <span class="stat-num" style="opacity:0.35;">02</span>
+          <h3>Upload & review</h3>
+          <p style="margin:0;">Upload your first document. The AI extracts it; you confirm anything it's unsure about.</p>
+        </div>
+        <div class="card">
+          <span class="stat-num" style="opacity:0.35;">03</span>
+          <h3>Post updates, get reminders</h3>
+          <p style="margin:0;">Post status updates as work moves. The AI reminds you about stale lines, late orders, and pending approvals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="card">
+        <div class="icon-tile"><Icon name="shield" /></div>
+        <h3>Security & data handling</h3>
+        <p>Every AI proposal arrives as an action card showing what it read, what it suggests, and why. Nothing changes a baseline, places an order, or transfers property until a person approves it, and every action is recorded in an audit trail.</p>
+        <div class="notice">
+          <strong>Data notice:</strong> at launch, the platform is not designed for controlled unclassified information (CUI), export-controlled, or classified data. Please do not upload it. Support for controlled data is planned for a later phase.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

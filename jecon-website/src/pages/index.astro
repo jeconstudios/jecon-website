@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+const audiences = [
+  { icon: 'shield', title: 'Government Contractor', copy: 'BOM baselines, variance, DoD hand-receipt forms, and DPAS-aware procurement tracking.', href: '/solutions#government' },
+  { icon: 'truck', title: 'Carrier / Fleet', copy: 'Billing & POD extraction, driver qualification tracking, maintenance and settlements.', href: '/solutions#carrier' },
+  { icon: 'building', title: 'Commercial Business', copy: 'Procurement, inventory, and reorder points without the ERP price tag.', href: '/solutions#commercial' },
+  { icon: 'users', title: 'Individual / Owner-Operator', copy: 'A simple way to track materials, orders, and paperwork without a back office.', href: '/solutions#individual' },
+];
+---
+<BaseLayout title="Home">
+
+  <section class="hero section">
+    <div class="wrap hero-split">
+      <div>
+        <span class="eyebrow"><Icon name="bolt" size={14} /> JECON Platform</span>
+        <h1>AI does the paperwork.<br>You make the decisions.</h1>
+        <p class="lede">Upload a bill of materials, invoice, or proof-of-delivery in almost any format. The JECON Platform reads it, tracks changes, and drafts the next step — reorders, hand receipts, settlements. Nothing moves until a person approves it.</p>
+        <div class="btn-row">
+          <a href="/signup" class="btn">Create Account</a>
+          <a href="/platform" class="btn secondary">See How It Works</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-card">
+          <div class="hero-card-row"><Icon name="doc" size={18} /><span>BOM_2026-04.xlsx</span><span class="mini-badge">Read</span></div>
+          <div class="hero-card-row"><Icon name="chart" size={18} /><span>Variance: 3 lines changed</span><span class="mini-badge">Flagged</span></div>
+          <div class="hero-card-row"><Icon name="clipboard" size={18} /><span>Reorder draft — Item #4471</span><span class="mini-badge pending">Needs approval</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight audience-router">
+    <div class="wrap">
+      <h2 style="text-align:center; margin-bottom: 8px;">Built for how you already work</h2>
+      <p class="lede" style="margin: 0 auto 32px; text-align:center;">Pick what sounds like you.</p>
+      <div class="audience-grid">
+        {audiences.map((a) => (
+          <a class="audience-card" href={a.href}>
+            <div class="icon-tile"><Icon name={a.icon} /></div>
+            <h3>{a.title}</h3>
+            <p style="font-size: 0.9rem; margin: 0;">{a.copy}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section credibility">
+    <div class="wrap">
+      <div class="card" style="display:grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;">
+        <div>
+          <span class="eyebrow">Backed by real operations</span>
+          <h2 style="margin-bottom: 12px;">Built by a company that has run this on paper for years.</h2>
+          <p style="margin-bottom: 20px;">JECON LLC has managed federal logistics and program execution since 2017 — warehousing, transportation, compliance, and audit-ready governance. The JECON Platform is that operating discipline, built into software.</p>
+          <a href="/services" class="btn secondary">See our services</a>
+        </div>
+        <div class="stats-strip" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="stat"><span class="stat-num">2017</span><span class="stat-label">Operating Since</span></div>
+          <div class="stat"><span class="stat-num">30+</span><span class="stat-label">U.S. Markets Served</span></div>
+          <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Human-Approved AI</span></div>
+          <div class="stat"><span class="stat-num">2</span><span class="stat-label">Platform Modules</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="card dark" style="text-align:center; padding: 48px;">
+        <h2 style="color:white;">Ready to stop chasing paperwork?</h2>
+        <p style="max-width: 520px; margin: 0 auto 24px;">Free tier available. No approval gate — create your account and you're in.</p>
+        <div class="btn-row" style="justify-content:center;">
+          <a href="/signup" class="btn">Create Account</a>
+          <a href="/pricing" class="btn on-dark secondary">View Pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .hero-art { display: flex; justify-content: center; }
+  .hero-card {
+    background: var(--navy); border-radius: 18px; padding: 22px; width: 100%; max-width: 360px;
+    box-shadow: var(--shadow-lg); display: flex; flex-direction: column; gap: 14px;
+  }
+  .hero-card-row {
+    display: flex; align-items: center; gap: 10px; color: #dbe4ff; font-size: 0.85rem;
+    background: rgba(255,255,255,0.06); padding: 10px 12px; border-radius: 10px;
+  }
+  .hero-card-row span:nth-child(2) { flex-grow: 1; }
+  .mini-badge { font-size: 0.68rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(91,140,255,0.25); color: #a9c3ff; }
+  .mini-badge.pending { background: rgba(35,201,158,0.2); color: #7be0c4; }
+</style>
