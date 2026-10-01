@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+const segments = [
+  {
+    id: 'government',
+    icon: 'shield',
+    title: 'Government Contractors',
+    tag: 'DPAS-aware, forms-ready',
+    copy: "Keep BOM baselines defensible and property accountable without a dedicated compliance team.",
+    points: [
+      'Locked baselines with recorded approvals for audit readiness',
+      'DA 2062, DD 1149, DD 1348-1A, and DD 250 hand-receipt templates',
+      'Long-lead tracking with DPAS priority-rating awareness',
+      'Variance reports sized in dollars and percent for contracting officers',
+    ],
+  },
+  {
+    id: 'carrier',
+    icon: 'truck',
+    title: 'Carriers & Fleets',
+    tag: 'Early access — Fleet Operations',
+    copy: 'Less time on paperwork between loads, more time moving freight.',
+    points: [
+      'Billing and proof-of-delivery extraction from rate confirmations',
+      'Driver qualification file tracking before expirations become violations',
+      'Maintenance reminders informed by telematics',
+      'Settlement drafts prepared for owner-operator approval',
+    ],
+  },
+  {
+    id: 'commercial',
+    icon: 'building',
+    title: 'Commercial Businesses',
+    tag: 'Logistics Management Specialist',
+    copy: 'Procurement, inventory, and reorder discipline without buying an ERP.',
+    points: [
+      'Upload a BOM in whatever format you already use — Excel, CSV, PDF, even a photo',
+      'Procurement tracking from quote to stocked, with stale-update reminders',
+      'Inventory hierarchy from site to bin, with barcode/QR labels',
+      'AI-suggested reorder points that always wait for your approval',
+    ],
+  },
+  {
+    id: 'individual',
+    icon: 'users',
+    title: 'Individuals & Owner-Operators',
+    tag: 'Starter-friendly',
+    copy: "A simple way to track materials, orders, and paperwork without a back office.",
+    points: [
+      'Free tier to get started — no card required',
+      'Civilian hand-receipt templates for personal or small-crew property',
+      'Freight visibility for anything you're waiting on',
+      'Everything a small team needs, none of the overhead',
+    ],
+  },
+];
+---
+<BaseLayout title="Solutions" description="JECON Platform solutions by audience: government contractors, carriers and fleets, commercial businesses, and individuals.">
+
+  <section class="section-tight">
+    <div class="wrap">
+      <span class="eyebrow"><Icon name="compass" size={14} /> Solutions</span>
+      <h1>The same platform, tuned to how you work.</h1>
+      <p class="lede">Every segment gets the same audit trail and human-approval model underneath — the difference is which pieces come front and center.</p>
+    </div>
+  </section>
+
+  {segments.map((s, i) => (
+    <section class="section" id={s.id} style={i % 2 === 1 ? 'background:#eef2ff;' : ''}>
+      <div class="wrap">
+        <div class="hero-split">
+          <div class={i % 2 === 1 ? 'order-2' : ''}>
+            <div class="icon-tile"><Icon name={s.icon} /></div>
+            <span class="eyebrow">{s.tag}</span>
+            <h2>{s.title}</h2>
+            <p class="lede">{s.copy}</p>
+            <div class="btn-row">
+              <a href="/signup" class="btn">Create Account</a>
+              <a href="/contact" class="btn secondary">Talk to Us</a>
+            </div>
+          </div>
+          <div class="card">
+            <ul class="tier-list" style="margin:0;">
+              {s.points.map((p) => (
+                <li><Icon name="check" size={16} /><span>{p}</span></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+</BaseLayout>
+
+<style>
+  .order-2 { order: 2; }
+  @media (max-width: 980px) { .order-2 { order: 0; } }
+</style>

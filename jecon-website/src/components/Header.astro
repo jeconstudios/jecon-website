@@ -1,0 +1,85 @@
+---
+const { pathname } = Astro.url;
+const nav = [
+  { href: '/platform', label: 'Platform' },
+  { href: '/solutions', label: 'Solutions' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/services', label: 'Services' },
+  { href: '/contact', label: 'Contact' },
+];
+const isActive = (href) => pathname === href || pathname.startsWith(href + '/');
+---
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">JECON</a>
+
+    <nav class="main-nav" aria-label="Primary">
+      {nav.map((item) => (
+        <a href={item.href} class={isActive(item.href) ? 'active' : ''}>{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <a href="/signin" class="header-signin">Sign In</a>
+      <a href="/signup" class="btn header-cta">Create Account</a>
+    </div>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    {nav.map((item) => (
+      <a href={item.href} class={isActive(item.href) ? 'active' : ''}>{item.label}</a>
+    ))}
+    <div class="mobile-nav-actions">
+      <a href="/signin" class="btn secondary block">Sign In</a>
+      <a href="/signup" class="btn block">Create Account</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(246, 247, 251, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner { display: flex; align-items: center; gap: 32px; padding: 16px 24px; }
+  .logo {
+    font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 1.3rem;
+    color: var(--navy); letter-spacing: -0.01em; margin-right: auto;
+  }
+  .main-nav { display: flex; gap: 28px; }
+  .main-nav a {
+    color: var(--text-muted); font-weight: 600; font-size: 0.94rem;
+    padding: 6px 2px; border-bottom: 2px solid transparent; transition: 0.15s;
+  }
+  .main-nav a:hover, .main-nav a.active { color: var(--navy); border-bottom-color: var(--royal); }
+  .header-actions { display: flex; align-items: center; gap: 18px; }
+  .header-signin { font-weight: 700; color: var(--navy); font-size: 0.94rem; }
+  .header-cta { padding: 11px 20px; font-size: 0.9rem; }
+  .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+  .nav-toggle span { width: 22px; height: 2px; background: var(--navy); display: block; }
+  .mobile-nav { display: none; flex-direction: column; padding: 12px 24px 24px; gap: 4px; border-top: 1px solid var(--border); }
+  .mobile-nav a { padding: 12px 4px; font-weight: 600; color: var(--text-main); }
+  .mobile-nav a.active { color: var(--royal); }
+  .mobile-nav-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+
+  @media (max-width: 900px) {
+    .main-nav, .header-actions { display: none; }
+    .nav-toggle { display: flex; }
+    .mobile-nav.open { display: flex; }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Sign In" description="Sign in to your JECON Platform account.">
+  <section class="section" style="max-width:440px; margin:0 auto;">
+    <div class="wrap">
+      <h1 style="margin-bottom:8px;">Sign in</h1>
+      <p class="lede" style="margin-bottom:24px;">Access your JECON Platform workspace.</p>
+      <div class="card">
+        <form id="signin-form">
+          <label for="si-email">Email Address</label>
+          <input id="si-email" type="email" name="email" required>
+          <label for="si-password">Password</label>
+          <input id="si-password" type="password" name="password" required>
+          <div id="signin-message"></div>
+          <button type="submit" class="btn block">Sign In</button>
+        </form>
+        <p style="text-align:center; font-size:0.85rem; margin-top:16px;">
+          New here? <a href="/signup">Create an account</a>
+        </p>
+      </div>
+      <div class="notice" style="margin-top:16px;">
+        The client workspace (app.jeconllc.com) is being built now. Once it's live, signing in here will take you straight there.
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { supabase } from '../lib/supabase.js';
+
+  const form = document.getElementById('signin-form');
+  const msg = document.getElementById('signin-message');
+  const show = (html, type) => { msg.innerHTML = `<div class="notice ${type}">${html}</div>`; };
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const { error } = await supabase.auth.signInWithPassword({
+      email: String(fd.get('email') || ''),
+      password: String(fd.get('password') || ''),
+    });
+    if (error) {
+      show(error.message || 'Could not sign in. Check your email and password.', 'error');
+      return;
+    }
+    show('Signed in. The client workspace is coming soon — you\'re verified and ready for it.', 'success');
+  });
+</script>
