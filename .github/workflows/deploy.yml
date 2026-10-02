@@ -23,7 +23,22 @@ jobs:
         run: npm install
 
       - name: Build site (Astro)
-        run: npm run build
+        run: |
+          set +e
+          npm run build > build.log 2>&1
+          status=$?
+          set -e
+          cat build.log
+          if [ $status -ne 0 ]; then
+            echo "::group::Build failed - tail of output (also sent as annotations below)"
+            tail -n 60 build.log
+            echo "::endgroup::"
+            tail -n 15 build.log | while IFS= read -r line; do
+              esc=$(echo "$line" | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')
+              echo "::error::$esc"
+            done
+            exit $status
+          fi
         env:
           # These PUBLIC_* values are baked into the static site at build time (Astro
           # requirement — there is no server to read them from at runtime). They are
