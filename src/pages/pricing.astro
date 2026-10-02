@@ -11,12 +11,12 @@ const tiers = [
   {
     name: 'Starter', price: '$29', period: '/mo',
     features: ['300 AI pages / mo', '2 users', '3 active projects', 'No DoD forms', 'No SSO / audit export'],
-    cta: 'Create Account', href: '/signup', featured: false,
+    cta: 'Create Account', href: '/signup?tier=starter', featured: false,
   },
   {
     name: 'Professional', price: '$129', period: '/mo',
     features: ['2,000 AI pages / mo', '5 users (+$19/extra)', 'Unlimited active projects', 'DoD forms included', 'No SSO / audit export'],
-    cta: 'Create Account', href: '/signup', featured: true,
+    cta: 'Create Account', href: '/signup?tier=professional', featured: true,
   },
   {
     name: 'Enterprise / Gov', price: 'From $499', period: '/mo (annual)',
