@@ -2,47 +2,144 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 
-const tiers = [
+const dispatchOpsTiers = [
   {
-    name: 'Free', price: '$0', period: '',
-    features: ['25 AI pages / mo', '1 user', '1 active project', 'No DoD forms', 'No SSO / audit export'],
-    cta: 'Create Account', href: '/signup', featured: false,
+    name: 'Starter', price: '$99', period: '/mo', note: 'Up to 3 trucks',
+    features: [
+      'Carrier & driver portal',
+      'Load board & dispatch pipeline',
+      'DQF + Clearinghouse compliance tracking',
+      'Rate confirmation e-signature',
+      '300 AI doc pages / mo',
+    ],
+    cta: 'Create Account', href: '/signup?system=dispatchops&tier=starter', featured: false,
   },
   {
-    name: 'Starter', price: '$29', period: '/mo',
-    features: ['300 AI pages / mo', '2 users', '3 active projects', 'No DoD forms', 'No SSO / audit export'],
-    cta: 'Create Account', href: '/signup?tier=starter', featured: false,
+    name: 'Professional', price: '$149', period: '/mo', note: '3 trucks included, then +$12/truck',
+    features: [
+      'Everything in Starter, plus:',
+      'Broker fraud & identity vetting (hard gate)',
+      'Telematics auto check-calls (Samsara/Motive)',
+      'Truck-legal routing + live fuel price context',
+      'AI-drafted carrier outreach & follow-up scheduling',
+      'Invoicing & settlements',
+      '2,000 AI doc pages / mo',
+    ],
+    cta: 'Create Account', href: '/signup?system=dispatchops&tier=professional', featured: true, truckInput: true,
   },
   {
-    name: 'Professional', price: '$129', period: '/mo',
-    features: ['2,000 AI pages / mo', '5 users (+$19/extra)', 'Unlimited active projects', 'DoD forms included', 'No SSO / audit export'],
-    cta: 'Create Account', href: '/signup?tier=professional', featured: true,
+    name: 'Enterprise', price: 'From $599', period: '/mo', note: '~30 trucks, custom beyond',
+    features: [
+      'Everything in Professional, plus:',
+      'Multi-dispatcher / multi-location support',
+      'SSO & audit export',
+      'Dedicated onboarding',
+      'Custom load-board integrations (Highway, DAT)',
+      '10,000+ AI doc pages / mo, PO/invoice billing',
+    ],
+    cta: 'Contact Us', href: '/contact', featured: false,
+  },
+];
+
+const lmsTiers = [
+  {
+    name: 'Starter', price: '$29', period: '/mo', note: '2 users, 3 active projects',
+    features: [
+      'BOM ingestion (baseline)',
+      'Inventory & warehouse locations',
+      'Reorder point alerts',
+      '300 AI doc pages / mo',
+    ],
+    cta: 'Create Account', href: '/signup?system=lms&tier=starter', featured: false,
   },
   {
-    name: 'Enterprise / Gov', price: 'From $499', period: '/mo (annual)',
-    features: ['10,000+ AI pages / mo', '10+ users', 'Unlimited active projects', 'DoD forms included', 'SSO, audit export & PO/invoice billing'],
+    name: 'Professional', price: '$299', period: '/mo', note: 'Unlimited active projects',
+    features: [
+      'Everything in Starter, plus:',
+      'BOM baseline control & variance detection',
+      'Long-lead item analysis',
+      'Procurement tracking',
+      'Hand receipts & property transfers',
+      'Freight visibility',
+      '2,000 AI doc pages / mo',
+    ],
+    cta: 'Create Account', href: '/signup?system=lms&tier=professional', featured: true,
+  },
+  {
+    name: 'Enterprise', price: '$699', period: '/mo', note: 'Multi-warehouse',
+    features: [
+      'Everything in Professional, plus:',
+      'Multi-warehouse support',
+      'SSO & audit export',
+      'Dedicated account management',
+      'Custom integrations',
+      '10,000+ AI doc pages / mo, PO/invoice billing',
+    ],
     cta: 'Contact Us', href: '/contact', featured: false,
   },
 ];
 ---
-<BaseLayout title="Pricing" description="JECON Platform pricing: Free, Starter, Professional, and Enterprise/Gov tiers.">
+<BaseLayout title="Pricing" description="JECON Platform pricing for DispatchOps AI and Logistics Management (LMS) — Starter, Professional, and Enterprise tiers.">
 
   <section class="section-tight" style="background:var(--navy);">
     <div class="wrap" style="text-align:center;">
       <span class="eyebrow on-dark"><Icon name="chart" size={14} /> Pricing</span>
       <h1 style="color:white;">Plans that scale with you.</h1>
-      <p class="lede" style="color:#cbd5e1; margin: 0 auto;">A flat monthly price plus metered AI document pages — everything else on your tier is unlimited. Self-serve card checkout for Free, Starter, and Professional.</p>
+      <p class="lede" style="color:#cbd5e1; margin: 0 auto;">Each system is priced and billed separately, so you only pay for what you use. Self-serve card checkout for Starter and Professional on both systems.</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap" style="text-align:center;">
+      <div class="card" style="max-width:520px; margin:0 auto;">
+        <span class="eyebrow" style="align-self:center;">Free</span>
+        <div class="tier-price">$0<small>/mo</small></div>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin:8px 0 16px;">25 AI doc pages/mo, 1 user, 1 active project. Pick DispatchOps AI or LMS when you create your account — upgrade either one independently, whenever you're ready.</p>
+        <a href="/signup" class="btn block secondary">Create Free Account</a>
+      </div>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="tier-grid">
-        {tiers.map((t) => (
+      <span class="eyebrow"><Icon name="chart" size={14} /> DispatchOps AI</span>
+      <h2 style="margin-bottom:20px;">Fleet dispatch & compliance, without the per-truck markup.</h2>
+      <div class="tier-grid" style="grid-template-columns: repeat(3, 1fr);">
+        {dispatchOpsTiers.map((t) => (
+          <div class={`tier-card ${t.featured ? 'featured' : ''}`} data-tier-card={t.truckInput ? 'do-professional' : undefined}>
+            {t.featured && <span class="badge" style="align-self:flex-start; margin-bottom:8px;">Most popular</span>}
+            <span class="eyebrow" style="align-self:flex-start;">{t.name}</span>
+            <div class="tier-price">{t.price}<small>{t.period}</small></div>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin:-2px 0 10px;">{t.note}</p>
+            <ul class="tier-list">
+              {t.features.map((f) => (
+                <li><Icon name="check" size={16} /><span>{f}</span></li>
+              ))}
+            </ul>
+            {t.truckInput && (
+              <div style="margin-bottom:12px;">
+                <label for="do-truck-count" style="font-size:0.8rem; font-weight:600;">Number of trucks</label>
+                <input id="do-truck-count" type="number" min="1" value="3" style="width:100%; margin-top:4px;">
+              </div>
+            )}
+            <a href={t.href} class={`btn block ${t.featured ? '' : 'secondary'}`} data-tier-cta={t.truckInput ? 'do-professional' : undefined} data-base-href={t.href}>{t.cta}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow"><Icon name="chart" size={14} /> Logistics Management (LMS)</span>
+      <h2 style="margin-bottom:20px;">BOM, procurement, and warehouse control in one system.</h2>
+      <div class="tier-grid" style="grid-template-columns: repeat(3, 1fr);">
+        {lmsTiers.map((t) => (
           <div class={`tier-card ${t.featured ? 'featured' : ''}`}>
             {t.featured && <span class="badge" style="align-self:flex-start; margin-bottom:8px;">Most popular</span>}
             <span class="eyebrow" style="align-self:flex-start;">{t.name}</span>
             <div class="tier-price">{t.price}<small>{t.period}</small></div>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin:-2px 0 10px;">{t.note}</p>
             <ul class="tier-list">
               {t.features.map((f) => (
                 <li><Icon name="check" size={16} /><span>{f}</span></li>
@@ -65,15 +162,35 @@ const tiers = [
             <li>Annual billing: 2 months free on any paid tier</li>
           </ul>
           <ul style="margin:0;">
-            <li>Fleet Operations add-on (early access): from ~$79/mo base + per-truck charge</li>
-            <li>Need PO or invoice billing? Choose it at signup, or contact us and we'll set it up</li>
+            <li>Run both DispatchOps AI and LMS? Each is billed on its own plan — mix and match tiers freely</li>
+            <li>Need PO or invoice billing? Choose Enterprise and contact us, or ask us to set it up on Professional</li>
           </ul>
         </div>
         <div class="notice" style="margin-top:16px;">
-          Prices above are current planning figures and may be adjusted before they're finalized in checkout. Card checkout is handled by Stripe; PO/invoice billing for Enterprise/Gov is set up with our team directly.
+          Card checkout is handled by Stripe. Enterprise tiers on both systems are set up with our team directly (PO/invoice billing available).
         </div>
       </div>
     </div>
   </section>
 
 </BaseLayout>
+
+<script>
+  // Keeps the DispatchOps Professional "Create Account" link's truck count
+  // query param in sync with the number input, so signup/checkout bills the
+  // right number of additional trucks from the start.
+  const input = document.getElementById('do-truck-count') as HTMLInputElement | null;
+  const cta = document.querySelector('[data-tier-cta="do-professional"]') as HTMLAnchorElement | null;
+
+  function syncHref() {
+    if (!input || !cta) return;
+    const base = cta.getAttribute('data-base-href') || cta.getAttribute('href') || '';
+    const trucks = Math.max(1, Math.trunc(Number(input.value) || 1));
+    const url = new URL(base, window.location.origin);
+    url.searchParams.set('trucks', String(trucks));
+    cta.setAttribute('href', `${url.pathname}${url.search}`);
+  }
+
+  input?.addEventListener('input', syncHref);
+  syncHref();
+</script>

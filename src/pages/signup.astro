@@ -1,14 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
+const validSystems = ['dispatchops', 'lms'];
 const validTiers = ['starter', 'professional'];
-const requestedTier = validTiers.includes(Astro.url.searchParams.get('tier') || '')
-  ? Astro.url.searchParams.get('tier')
-  : 'free';
-const tierCopy = {
-  starter: 'Starter ($29/mo)',
-  professional: 'Professional ($129/mo)',
-  free: null,
+const rawSystem = Astro.url.searchParams.get('system') || '';
+const rawTier = Astro.url.searchParams.get('tier') || '';
+const hasPlan = validSystems.includes(rawSystem) && validTiers.includes(rawTier);
+
+// billing_tier stored on the user is "do_starter" / "do_professional" /
+// "lms_starter" / "lms_professional" — matches billing-checkout's TIER_CONFIG
+// keys exactly. "free" means no checkout step after signup.
+const requestedTier = hasPlan ? `${rawSystem === 'dispatchops' ? 'do' : 'lms'}_${rawTier}` : 'free';
+const requestedTrucks = Math.max(1, Math.trunc(Number(Astro.url.searchParams.get('trucks')) || 3));
+
+const tierCopy: Record<string, string> = {
+  do_starter: 'DispatchOps AI — Starter ($99/mo)',
+  do_professional: `DispatchOps AI — Professional ($149/mo, ${requestedTrucks} trucks)`,
+  lms_starter: 'LMS — Starter ($29/mo)',
+  lms_professional: 'LMS — Professional ($299/mo)',
 };
 ---
 <BaseLayout title="Create Account" description="Create your JECON Platform account — self-serve, no approval gate.">
@@ -28,6 +38,7 @@ const tierCopy = {
       <div class="card">
         <form id="signup-form" novalidate>
           <input type="hidden" name="tier" value={requestedTier}>
+          <input type="hidden" name="truck_count" value={requestedTrucks}>
           <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off">
 
           <label for="su-name">Full Name</label>
@@ -91,6 +102,7 @@ const tierCopy = {
     const organization = String(fd.get('organization') || '').trim();
     const accountType = String(fd.get('account_type') || '');
     const tier = String(fd.get('tier') || 'free');
+    const truckCount = Math.max(1, Math.trunc(Number(fd.get('truck_count')) || 3));
 
     if (!name || !organization || !accountType) {
       show('Please complete name, organization, and account type.', 'error');
@@ -128,6 +140,7 @@ const tierCopy = {
           account_type: accountType,
           services_of_interest: accountType === 'carrier' ? ['fleet_operations'] : ['logistics_management'],
           billing_tier: tier,
+          billing_truck_count: truckCount,
         },
       },
     });
