@@ -24,6 +24,13 @@ jobs:
 
       - name: Build site (Astro)
         run: npm run build
+        env:
+          # These PUBLIC_* values are baked into the static site at build time (Astro
+          # requirement — there is no server to read them from at runtime). They are
+          # safe to expose client-side by design: Supabase access is enforced by Row
+          # Level Security, not by keeping the anon key secret. See .env.example.
+          PUBLIC_SUPABASE_URL: https://jpvuirvxcplvtqijccem.supabase.co
+          PUBLIC_SUPABASE_ANON_KEY: sb_publishable_p18fvRrV3T9CmaecfVTdbw_-Q7cVWZq
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
