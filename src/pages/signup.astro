@@ -13,6 +13,8 @@ const hasPlan = validSystems.includes(rawSystem) && validTiers.includes(rawTier)
 // keys exactly. "free" means no checkout step after signup.
 const requestedTier = hasPlan ? `${rawSystem === 'dispatchops' ? 'do' : 'lms'}_${rawTier}` : 'free';
 const requestedTrucks = Math.max(1, Math.trunc(Number(Astro.url.searchParams.get('trucks')) || 3));
+const requestedBilling = Astro.url.searchParams.get('billing') === 'annual' ? 'annual' : 'monthly';
+const requestedModule = rawSystem === 'dispatchops' ? 'dispatch_ops' : rawSystem === 'lms' ? 'logistics_management' : null;
 
 const tierCopy: Record<string, string> = {
   do_starter: 'DispatchOps AI — Starter ($99/mo)',
@@ -39,6 +41,8 @@ const tierCopy: Record<string, string> = {
         <form id="signup-form" novalidate>
           <input type="hidden" name="tier" value={requestedTier}>
           <input type="hidden" name="truck_count" value={requestedTrucks}>
+          <input type="hidden" name="billing_period" value={requestedBilling}>
+          <input type="hidden" name="module" value={requestedModule ?? ''}>
           <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off">
 
           <label for="su-name">Full Name</label>
@@ -103,6 +107,8 @@ const tierCopy: Record<string, string> = {
     const accountType = String(fd.get('account_type') || '');
     const tier = String(fd.get('tier') || 'free');
     const truckCount = Math.max(1, Math.trunc(Number(fd.get('truck_count')) || 3));
+    const billingPeriod = String(fd.get('billing_period') || 'monthly');
+    const selectedModule = String(fd.get('module') || '');
 
     if (!name || !organization || !accountType) {
       show('Please complete name, organization, and account type.', 'error');
@@ -138,9 +144,10 @@ const tierCopy: Record<string, string> = {
           full_name: name,
           organization,
           account_type: accountType,
-          services_of_interest: accountType === 'carrier' ? ['fleet_operations'] : ['logistics_management'],
+          services_of_interest: selectedModule ? [selectedModule] : (accountType === 'carrier' ? ['dispatch_ops'] : ['logistics_management']),
           billing_tier: tier,
           billing_truck_count: truckCount,
+          billing_period: billingPeriod,
         },
       },
     });

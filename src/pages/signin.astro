@@ -20,7 +20,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </p>
       </div>
       <div class="notice" style="margin-top:16px;">
-        The client workspace (app.jeconllc.com) is being built now. Once it's live, signing in here will take you straight there.
+        Signing in takes you straight to your workspace at <a href="/app/">/app</a>.
       </div>
     </div>
   </section>
@@ -44,6 +44,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       show(error.message || 'Could not sign in. Check your email and password.', 'error');
       return;
     }
-    show('Signed in. The client workspace is coming soon — you\'re verified and ready for it.', 'success');
+    show('Signed in. Taking you to your workspace...', 'success');
+    window.location.href = '/app/';
   });
 </script>

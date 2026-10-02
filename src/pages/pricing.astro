@@ -4,18 +4,18 @@ import Icon from '../components/Icon.astro';
 
 const dispatchOpsTiers = [
   {
-    name: 'Starter', price: '$99', period: '/mo', note: 'Up to 3 trucks',
+    name: 'Starter', price: '$99', period: '/mo', annualPrice: '$990', annualPeriod: '/yr', note: 'Up to 3 trucks',
     features: [
       'Carrier & driver portal',
       'Load board & dispatch pipeline',
       'DQF + Clearinghouse compliance tracking',
       'Rate confirmation e-signature',
-      '300 AI doc pages / mo',
+      'Unlimited AI document processing',
     ],
     cta: 'Create Account', href: '/signup?system=dispatchops&tier=starter', featured: false,
   },
   {
-    name: 'Professional', price: '$149', period: '/mo', note: '3 trucks included, then +$12/truck',
+    name: 'Professional', price: '$149', period: '/mo', annualPrice: '$1,490', annualPeriod: '/yr', note: '3 trucks included, then +$12/truck (+$120/truck/yr annual)',
     features: [
       'Everything in Starter, plus:',
       'Broker fraud & identity vetting (hard gate)',
@@ -23,7 +23,7 @@ const dispatchOpsTiers = [
       'Truck-legal routing + live fuel price context',
       'AI-drafted carrier outreach & follow-up scheduling',
       'Invoicing & settlements',
-      '2,000 AI doc pages / mo',
+      'Unlimited AI document processing',
     ],
     cta: 'Create Account', href: '/signup?system=dispatchops&tier=professional', featured: true, truckInput: true,
   },
@@ -35,7 +35,7 @@ const dispatchOpsTiers = [
       'SSO & audit export',
       'Dedicated onboarding',
       'Custom load-board integrations (Highway, DAT)',
-      '10,000+ AI doc pages / mo, PO/invoice billing',
+      'Unlimited AI document processing, PO/invoice billing',
     ],
     cta: 'Contact Us', href: '/contact', featured: false,
   },
@@ -43,17 +43,17 @@ const dispatchOpsTiers = [
 
 const lmsTiers = [
   {
-    name: 'Starter', price: '$29', period: '/mo', note: '2 users, 3 active projects',
+    name: 'Starter', price: '$29', period: '/mo', annualPrice: '$290', annualPeriod: '/yr', note: 'No per-user or per-project caps',
     features: [
       'BOM ingestion (baseline)',
       'Inventory & warehouse locations',
       'Reorder point alerts',
-      '300 AI doc pages / mo',
+      'Unlimited AI document processing',
     ],
     cta: 'Create Account', href: '/signup?system=lms&tier=starter', featured: false,
   },
   {
-    name: 'Professional', price: '$299', period: '/mo', note: 'Unlimited active projects',
+    name: 'Professional', price: '$299', period: '/mo', annualPrice: '$2,990', annualPeriod: '/yr', note: 'Unlimited active projects',
     features: [
       'Everything in Starter, plus:',
       'BOM baseline control & variance detection',
@@ -61,7 +61,7 @@ const lmsTiers = [
       'Procurement tracking',
       'Hand receipts & property transfers',
       'Freight visibility',
-      '2,000 AI doc pages / mo',
+      'Unlimited AI document processing',
     ],
     cta: 'Create Account', href: '/signup?system=lms&tier=professional', featured: true,
   },
@@ -73,7 +73,7 @@ const lmsTiers = [
       'SSO & audit export',
       'Dedicated account management',
       'Custom integrations',
-      '10,000+ AI doc pages / mo, PO/invoice billing',
+      'Unlimited AI document processing, PO/invoice billing',
     ],
     cta: 'Contact Us', href: '/contact', featured: false,
   },
@@ -85,7 +85,11 @@ const lmsTiers = [
     <div class="wrap" style="text-align:center;">
       <span class="eyebrow on-dark"><Icon name="chart" size={14} /> Pricing</span>
       <h1 style="color:white;">Plans that scale with you.</h1>
-      <p class="lede" style="color:#cbd5e1; margin: 0 auto;">Each system is priced and billed separately, so you only pay for what you use. Self-serve card checkout for Starter and Professional on both systems.</p>
+      <p class="lede" style="color:#cbd5e1; margin: 0 auto;">Each system is priced and billed separately, so you only pay for what you use. Self-serve card checkout for Starter and Professional on both systems. No AI usage caps on any paid tier.</p>
+      <div style="display:inline-flex; align-items:center; gap:10px; margin-top:20px; background:rgba(255,255,255,0.08); border-radius:999px; padding:4px;">
+        <button type="button" id="billing-toggle-monthly" class="billing-toggle-btn active" style="padding:8px 18px; border-radius:999px; border:none; font-size:0.85rem; font-weight:600; cursor:pointer;">Monthly</button>
+        <button type="button" id="billing-toggle-annual" class="billing-toggle-btn" style="padding:8px 18px; border-radius:999px; border:none; font-size:0.85rem; font-weight:600; cursor:pointer;">Annual <span style="opacity:0.75; font-weight:500;">— 2 months free</span></button>
+      </div>
     </div>
   </section>
 
@@ -94,7 +98,7 @@ const lmsTiers = [
       <div class="card" style="max-width:520px; margin:0 auto;">
         <span class="eyebrow" style="align-self:center;">Free</span>
         <div class="tier-price">$0<small>/mo</small></div>
-        <p style="font-size:0.9rem; color:var(--text-muted); margin:8px 0 16px;">25 AI doc pages/mo, 1 user, 1 active project. Pick DispatchOps AI or LMS when you create your account — upgrade either one independently, whenever you're ready.</p>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin:8px 0 16px;">Unlimited AI document processing. 1 user, 1 active project. Pick DispatchOps AI or LMS when you create your account — upgrade either one independently, whenever you're ready.</p>
         <a href="/signup" class="btn block secondary">Create Free Account</a>
       </div>
     </div>
@@ -109,7 +113,7 @@ const lmsTiers = [
           <div class={`tier-card ${t.featured ? 'featured' : ''}`} data-tier-card={t.truckInput ? 'do-professional' : undefined}>
             {t.featured && <span class="badge" style="align-self:flex-start; margin-bottom:8px;">Most popular</span>}
             <span class="eyebrow" style="align-self:flex-start;">{t.name}</span>
-            <div class="tier-price">{t.price}<small>{t.period}</small></div>
+            <div class="tier-price" data-monthly-price={t.price} data-monthly-period={t.period} data-annual-price={t.annualPrice ?? t.price} data-annual-period={t.annualPeriod ?? t.period}>{t.price}<small>{t.period}</small></div>
             <p style="font-size:0.8rem; color:var(--text-muted); margin:-2px 0 10px;">{t.note}</p>
             <ul class="tier-list">
               {t.features.map((f) => (
@@ -122,7 +126,7 @@ const lmsTiers = [
                 <input id="do-truck-count" type="number" min="1" value="3" style="width:100%; margin-top:4px;">
               </div>
             )}
-            <a href={t.href} class={`btn block ${t.featured ? '' : 'secondary'}`} data-tier-cta={t.truckInput ? 'do-professional' : undefined} data-base-href={t.href}>{t.cta}</a>
+            <a href={t.href} class={`btn block ${t.featured ? '' : 'secondary'} ${t.annualPrice ? 'pricing-cta' : ''}`} data-tier-cta={t.truckInput ? 'do-professional' : undefined} data-base-href={t.href}>{t.cta}</a>
           </div>
         ))}
       </div>
@@ -138,14 +142,14 @@ const lmsTiers = [
           <div class={`tier-card ${t.featured ? 'featured' : ''}`}>
             {t.featured && <span class="badge" style="align-self:flex-start; margin-bottom:8px;">Most popular</span>}
             <span class="eyebrow" style="align-self:flex-start;">{t.name}</span>
-            <div class="tier-price">{t.price}<small>{t.period}</small></div>
+            <div class="tier-price" data-monthly-price={t.price} data-monthly-period={t.period} data-annual-price={t.annualPrice ?? t.price} data-annual-period={t.annualPeriod ?? t.period}>{t.price}<small>{t.period}</small></div>
             <p style="font-size:0.8rem; color:var(--text-muted); margin:-2px 0 10px;">{t.note}</p>
             <ul class="tier-list">
               {t.features.map((f) => (
                 <li><Icon name="check" size={16} /><span>{f}</span></li>
               ))}
             </ul>
-            <a href={t.href} class={`btn block ${t.featured ? '' : 'secondary'}`}>{t.cta}</a>
+            <a href={t.href} class={`btn block ${t.featured ? '' : 'secondary'} ${t.annualPrice ? 'pricing-cta' : ''}`} data-base-href={t.href}>{t.cta}</a>
           </div>
         ))}
       </div>
@@ -158,8 +162,8 @@ const lmsTiers = [
         <h3>Overage & add-ons</h3>
         <div class="grid grid-2">
           <ul style="margin:0;">
-            <li>Overage: $25 top-up per 500 extra AI pages, or metered at $0.06/page</li>
-            <li>Annual billing: 2 months free on any paid tier</li>
+            <li>No AI usage caps — unlimited document processing on every paid tier, no overage charges</li>
+            <li>Annual billing: 2 months free on any paid tier (toggle above)</li>
           </ul>
           <ul style="margin:0;">
             <li>Run both DispatchOps AI and LMS? Each is billed on its own plan — mix and match tiers freely</li>
@@ -180,17 +184,53 @@ const lmsTiers = [
   // query param in sync with the number input, so signup/checkout bills the
   // right number of additional trucks from the start.
   const input = document.getElementById('do-truck-count') as HTMLInputElement | null;
-  const cta = document.querySelector('[data-tier-cta="do-professional"]') as HTMLAnchorElement | null;
+  const truckCta = document.querySelector('[data-tier-cta="do-professional"]') as HTMLAnchorElement | null;
 
-  function syncHref() {
-    if (!input || !cta) return;
-    const base = cta.getAttribute('data-base-href') || cta.getAttribute('href') || '';
-    const trucks = Math.max(1, Math.trunc(Number(input.value) || 1));
-    const url = new URL(base, window.location.origin);
-    url.searchParams.set('trucks', String(trucks));
-    cta.setAttribute('href', `${url.pathname}${url.search}`);
+  // Monthly/annual toggle: swaps displayed prices and appends ?billing=annual
+  // to every self-serve CTA link, carried through signup -> set-password ->
+  // Stripe Checkout so the right Price ID (monthly or annual) gets billed.
+  const monthlyBtn = document.getElementById('billing-toggle-monthly');
+  const annualBtn = document.getElementById('billing-toggle-annual');
+  let period: 'monthly' | 'annual' = 'monthly';
+
+  function applyPrices() {
+    document.querySelectorAll('.tier-price[data-monthly-price]').forEach((el) => {
+      const price = period === 'annual' ? el.getAttribute('data-annual-price') : el.getAttribute('data-monthly-price');
+      const unit = period === 'annual' ? el.getAttribute('data-annual-period') : el.getAttribute('data-monthly-period');
+      const small = el.querySelector('small');
+      if (el.firstChild && el.firstChild.nodeType === Node.TEXT_NODE) el.firstChild.textContent = price;
+      if (small) small.textContent = unit;
+    });
   }
 
-  input?.addEventListener('input', syncHref);
-  syncHref();
+  function syncCtas() {
+    document.querySelectorAll('a.pricing-cta[data-base-href]').forEach((a) => {
+      const anchor = a as HTMLAnchorElement;
+      const base = anchor.getAttribute('data-base-href') || anchor.getAttribute('href') || '';
+      const url = new URL(base, window.location.origin);
+      url.searchParams.set('billing', period);
+      if (anchor === truckCta && input) {
+        const trucks = Math.max(1, Math.trunc(Number(input.value) || 1));
+        url.searchParams.set('trucks', String(trucks));
+      }
+      anchor.setAttribute('href', `${url.pathname}${url.search}`);
+    });
+  }
+
+  function setPeriod(p: 'monthly' | 'annual') {
+    period = p;
+    monthlyBtn?.classList.toggle('active', p === 'monthly');
+    annualBtn?.classList.toggle('active', p === 'annual');
+    if (monthlyBtn) monthlyBtn.style.background = p === 'monthly' ? 'white' : 'transparent';
+    if (monthlyBtn) monthlyBtn.style.color = p === 'monthly' ? '#0f172a' : 'white';
+    if (annualBtn) annualBtn.style.background = p === 'annual' ? 'white' : 'transparent';
+    if (annualBtn) annualBtn.style.color = p === 'annual' ? '#0f172a' : 'white';
+    applyPrices();
+    syncCtas();
+  }
+
+  monthlyBtn?.addEventListener('click', () => setPeriod('monthly'));
+  annualBtn?.addEventListener('click', () => setPeriod('annual'));
+  input?.addEventListener('input', syncCtas);
+  setPeriod('monthly');
 </script>
