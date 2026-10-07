@@ -4,42 +4,29 @@ import Icon from '../components/Icon.astro';
 
 const segments = [
   {
-    id: 'government',
-    icon: 'shield',
-    title: 'Government Contractors',
-    tag: 'DPAS-aware, forms-ready',
-    copy: "Keep BOM baselines defensible and property accountable without a dedicated compliance team.",
+    id: 'commercial',
+    icon: 'building',
+    title: 'Commercial Businesses',
+    tag: 'Supply Chain Management',
+    copy: 'Procurement, inventory, and reorder discipline without buying an ERP.',
     points: [
-      'Locked baselines with recorded approvals for audit readiness',
-      'DA 2062, DD 1149, DD 1348-1A, and DD 250 hand-receipt templates',
-      'Long-lead tracking with DPAS priority-rating awareness',
-      'Variance reports sized in dollars and percent for contracting officers',
+      'Upload a LOM (list of materials) in whatever format you already use — Excel, CSV, PDF, even a photo',
+      'Procurement tracking from quote to stocked, with stale-update reminders',
+      'Inventory hierarchy from site to bin, with barcode/QR labels',
+      'AI-suggested reorder points that always wait for your approval',
     ],
   },
   {
     id: 'carrier',
     icon: 'truck',
     title: 'Carriers & Fleets',
-    tag: 'Early access — Fleet Operations',
+    tag: 'DispatchOps AI',
     copy: 'Less time on paperwork between loads, more time moving freight.',
     points: [
       'Billing and proof-of-delivery extraction from rate confirmations',
       'Driver qualification file tracking before expirations become violations',
-      'Maintenance reminders informed by telematics',
+      'Broker fraud and identity vetting before a load is booked',
       'Settlement drafts prepared for owner-operator approval',
-    ],
-  },
-  {
-    id: 'commercial',
-    icon: 'building',
-    title: 'Commercial Businesses',
-    tag: 'Logistics Management Specialist',
-    copy: 'Procurement, inventory, and reorder discipline without buying an ERP.',
-    points: [
-      'Upload a BOM in whatever format you already use — Excel, CSV, PDF, even a photo',
-      'Procurement tracking from quote to stocked, with stale-update reminders',
-      'Inventory hierarchy from site to bin, with barcode/QR labels',
-      'AI-suggested reorder points that always wait for your approval',
     ],
   },
   {
@@ -55,9 +42,22 @@ const segments = [
       'Everything a small team needs, none of the overhead',
     ],
   },
+  {
+    id: 'government',
+    icon: 'shield',
+    title: 'Government Contractors',
+    tag: 'DPAS priority ratings, hand-receipt templates',
+    copy: "The same supply chain tools, with the controls a contracting officer expects.",
+    points: [
+      'Locked LOM baselines with recorded approvals for audit readiness',
+      'DPAS priority ratings (DO / DX) tracked on each rated order, with rated long-lead items flagged',
+      'DA 2062, DD 1149, DD 1348-1A, and DD 250 hand-receipt templates',
+      'Variance reports sized in dollars and percent for contracting officers',
+    ],
+  },
 ];
 ---
-<BaseLayout title="Solutions" description="JECON Platform solutions by audience: government contractors, carriers and fleets, commercial businesses, and individuals.">
+<BaseLayout title="Solutions" description="JECON Platform solutions by audience: commercial businesses, carriers and fleets, individuals, and government contractors.">
 
   <section class="section-tight">
     <div class="wrap">

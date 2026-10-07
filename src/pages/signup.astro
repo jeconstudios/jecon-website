@@ -57,10 +57,10 @@ const tierCopy: Record<string, string> = {
           <label for="su-type">Account Type</label>
           <select id="su-type" name="account_type" required>
             <option value="">Select one...</option>
-            <option value="government">Government contractor</option>
-            <option value="carrier">Carrier / fleet</option>
             <option value="business">Commercial business</option>
+            <option value="carrier">Carrier / fleet</option>
             <option value="individual">Individual / owner-operator</option>
+            <option value="government">Government contractor</option>
           </select>
 
           {turnstileSiteKey && (

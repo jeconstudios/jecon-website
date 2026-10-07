@@ -3,7 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
-const { title, description = "JECON LLC — federal program management, integrated logistics, and the JECON Platform: AI-assisted logistics management and fleet operations software." } = Astro.props;
+const { title, description = "JECON LLC — supply chain management software and services for commercial businesses, carriers and fleets, and government contractors. AI does the paperwork; you approve." } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -11,7 +11,7 @@ const { title, description = "JECON LLC — federal program management, integrat
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
-  <title>{title ? `${title} | JECON LLC` : 'JECON LLC | Program Management, Logistics & the JECON Platform'}</title>
+  <title>{title ? `${title} | JECON LLC` : 'JECON LLC | Supply Chain Management Software & Services'}</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 </head>
 <body>

@@ -464,7 +464,7 @@
                         </div>
                         <span class="tag">For Business</span>
                         <h3>Run Your Supply Chain With Confidence</h3>
-                        <p>From a two-person shop to a multi-site operation, track bills of materials, procurement, warehousing, and freight in one system &mdash; with AI drafting the busywork and you approving what matters.</p>
+                        <p>From a two-person shop to a multi-site operation, track lists of materials, procurement, warehousing, and freight in one system &mdash; with AI drafting the busywork and you approving what matters.</p>
                         <a href="#business" class="cta-button secondary" style="margin-left:0;">Explore Business Solutions</a>
                     </div>
                 </div>
@@ -880,7 +880,7 @@
                         <h3>Small &amp; Growing Businesses</h3>
                         <div class="tier-price">Custom<small> / usage-based</small></div>
                         <ul>
-                            <li>Unlimited bills of materials and revisions</li>
+                            <li>Unlimited lists of materials and revisions</li>
                             <li>Variance engine and recorded approvals</li>
                             <li>Procurement tracking and reminders</li>
                             <li>More users, roles, and file integrations</li>
@@ -1030,7 +1030,7 @@
                     <div class="app-tabs">
                         <button type="button" class="app-tab active" data-tab="overview" onclick="appShowTab('overview')">Overview</button>
                         <button type="button" class="app-tab" data-tab="approvals" onclick="appShowTab('approvals')">Approvals</button>
-                        <button type="button" class="app-tab" data-tab="loms" onclick="appShowTab('loms')">Bills of Materials</button>
+                        <button type="button" class="app-tab" data-tab="loms" onclick="appShowTab('loms')">Lists of Materials</button>
                         <button type="button" class="app-tab" data-tab="longlead" onclick="appShowTab('longlead')">Long-Lead Items</button>
                         <button type="button" class="app-tab" data-tab="reorder" onclick="appShowTab('reorder')">Reorder Suggestions</button>
                         <button type="button" class="app-tab" data-tab="procurement" onclick="appShowTab('procurement')">Procurement Orders</button>
@@ -1068,7 +1068,7 @@
                         <div class="app-panel" id="apptab-loms">
                             <div class="card">
                                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                                    <h3 style="margin:0;">Bills of Materials (LOMs)</h3>
+                                    <h3 style="margin:0;">Lists of Materials (LOMs)</h3>
                                     <button type="button" class="icon-btn" onclick="appOpenLomForm()">+ New LOM</button>
                                 </div>
                                 <div id="lom-form-wrap" style="display:none; margin-top:15px;">
@@ -1106,7 +1106,7 @@
                                     <h3 style="margin:0;">Long-Lead Items</h3>
                                     <button type="button" class="icon-btn" onclick="appLoadLongLead()">Refresh</button>
                                 </div>
-                                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Bill-of-materials lines flagged as long-lead, with their delivery estimate and any linked procurement order. Flag a line or set/correct its estimate from the Bills of Materials tab.</p>
+                                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">List-of-materials lines flagged as long-lead, with their delivery estimate and any linked procurement order. Flag a line or set/correct its estimate from the Lists of Materials tab.</p>
                                 <div id="longlead-list" style="margin-top:15px;"></div>
                             </div>
                         </div>
@@ -1136,6 +1136,11 @@
                                         <div><label for="po-number">PO Number (optional)</label><input id="po-number" type="text"></div>
                                         <div><label for="po-expected">Expected Date (optional)</label><input id="po-expected" type="date"></div>
                                     </div>
+                                    <div class="form-row">
+                                        <div><label for="po-dpas">DPAS Priority Rating (optional)</label><input id="po-dpas" type="text" placeholder="e.g. DO-A1 or DX-A7" maxlength="6" style="text-transform:uppercase;"></div>
+                                        <div><label for="po-dpas-received">Rated Order Received (defaults to today)</label><input id="po-dpas-received" type="date"></div>
+                                    </div>
+                                    <p style="font-size:0.8rem; color:var(--text-muted); margin:-4px 0 10px;">Only for orders carrying a DPAS rating (DO or DX plus a program ID). The accept/reject deadline is 15 working days for DO and 10 for DX (15 CFR 700.13).</p>
                                     <h4>Lines</h4>
                                     <div id="po-lines-editor"></div>
                                     <button type="button" class="icon-btn" style="margin-top:8px;" onclick="appAddPoLine()">+ Add Line</button>
@@ -1289,12 +1294,12 @@
                                     <h3 style="margin:0;">Audit Log</h3>
                                     <button type="button" class="icon-btn" onclick="appLoadAuditLog()">Refresh</button>
                                 </div>
-                                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Every create, update, and delete across bills of materials, inventory, procurement, hand receipts, and freight — visible to owners and auditors only.</p>
+                                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Every create, update, and delete across lists of materials, inventory, procurement, hand receipts, and freight — visible to owners and auditors only.</p>
                                 <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:10px;">
                                     <label for="audit-table-filter" style="margin:0;">Filter by table:</label>
                                     <select id="audit-table-filter" style="margin-bottom:0; width:auto;" onchange="appLoadAuditLog()">
                                         <option value="">All tables</option>
-                                        <option value="lists_of_materials">Bills of Materials</option>
+                                        <option value="lists_of_materials">Lists of Materials</option>
                                         <option value="lom_lines">LOM Lines</option>
                                         <option value="lom_variances">LOM Variances</option>
                                         <option value="inventory_items">Inventory Items</option>
@@ -2497,7 +2502,7 @@
                     document.getElementById('app-org-line').textContent = appContext.org_name + ' — ' + appContext.role;
                     document.getElementById('app-overview-text').innerHTML =
                         'Signed in as <strong>' + escapeHtmlJs(data.session.user.email) + '</strong> for <strong>' + escapeHtmlJs(appContext.org_name) + '</strong> (role: ' + escapeHtmlJs(appContext.role) + ').<br><br>' +
-                        'Use the tabs on the left to manage bills of materials, reorder suggestions, procurement orders, hand receipts, and freight for the Logistics Management Software module.';
+                        'Use the tabs on the left to manage lists of materials, reorder suggestions, procurement orders, hand receipts, and freight for the Logistics Management Software module.';
                     const auditTabBtn = document.getElementById('nav-audit-tab');
                     if (auditTabBtn) auditTabBtn.style.display = (appContext.role === 'owner' || appContext.role === 'auditor') ? '' : 'none';
                     const prospectingTabBtn = document.getElementById('nav-prospecting-tab');
@@ -2538,7 +2543,7 @@
         // ---- Audit Log (owner/auditor only, enforced by RLS) ----
         function appAuditLabel(tableName) {
             const labels = {
-                lists_of_materials: 'Bill of Materials', lom_lines: 'LOM Line', lom_variances: 'LOM Variance',
+                lists_of_materials: 'List of Materials', lom_lines: 'LOM Line', lom_variances: 'LOM Variance',
                 inventory_items: 'Inventory Item', warehouse_locations: 'Warehouse Location',
                 procurement_orders: 'Procurement Order', procurement_order_lines: 'Procurement Order Line',
                 reorder_suggestions: 'Reorder Suggestion', hand_receipts: 'Hand Receipt',
@@ -2583,7 +2588,7 @@
             }
         }
 
-        // ---- Bills of Materials (LOMs) ----
+        // ---- Lists of Materials (LOMs) ----
         let appLomLineCount = 0;
         function appOpenLomForm() {
             document.getElementById('lom-form-wrap').style.display = 'block';
@@ -2781,12 +2786,14 @@
             const el = document.getElementById('longlead-list');
             el.textContent = 'Loading...';
             try {
-                const { data, error } = await sb.rpc('list_long_lead_items');
+                const [{ data, error }, { data: poData }] = await Promise.all([sb.rpc('list_long_lead_items'), sb.rpc('list_procurement_orders')]);
                 if (error) throw error;
-                if (!data || data.length === 0) { el.innerHTML = '<div class="builder-empty">No lines are flagged as long-lead yet. Flag one from a LOM\'s line list in the Bills of Materials tab.</div>'; return; }
+                const poById = {};
+                (poData || []).forEach(function (p) { poById[p.id] = p; });
+                if (!data || data.length === 0) { el.innerHTML = '<div class="builder-empty">No lines are flagged as long-lead yet. Flag one from a LOM\'s line list in the Lists of Materials tab.</div>'; return; }
                 el.innerHTML = '<table class="app-row-table"><thead><tr><th>LOM</th><th>Part</th><th>Description</th><th>Qty</th><th>Est. Delivery</th><th>Status</th><th>Linked PO</th></tr></thead><tbody>' +
                     data.map(function (r) {
-                        const poCell = r.procurement_order_id ? (appFmt(r.po_number || 'PO') + ' — ' + appFmt(r.po_status)) : '&mdash;';
+                        const poCell = r.procurement_order_id ? (appFmt(r.po_number || 'PO') + ' — ' + appFmt(r.po_status) + (poById[r.procurement_order_id] && poById[r.procurement_order_id].priority_rating ? ' ' + appDpasBadge(poById[r.procurement_order_id]) : '')) : '&mdash;';
                         return '<tr><td>' + appFmt(r.lom_title) + '</td><td>' + appFmt(r.part_number) + '</td><td>' + appFmt(r.description) + '</td><td>' + appFmt(r.quantity) + '</td>' +
                             '<td>' + appFmtDate(r.estimated_delivery_date) + '</td><td>' + appLongLeadStatusPill(r) + '</td><td>' + poCell + '</td></tr>';
                     }).join('') + '</tbody></table>';
@@ -2835,7 +2842,7 @@
                 const { data, error } = await sb.rpc('list_pending_approvals');
                 if (error) throw error;
                 if (!data || data.length === 0) { el.innerHTML = '<div class="builder-empty">Nothing is waiting on a decision right now.</div>'; return; }
-                const typeLabels = { reorder_suggestion: 'Reorder', hand_receipt_signature: 'Hand Receipt', lom_variance: 'BOM Variance' };
+                const typeLabels = { reorder_suggestion: 'Reorder', hand_receipt_signature: 'Hand Receipt', lom_variance: 'LOM Variance' };
                 el.innerHTML = '<table class="app-row-table"><thead><tr><th>Type</th><th>What</th><th>Requested</th><th></th></tr></thead><tbody>' +
                     data.map(function (a) {
                         let actions = '';
@@ -2919,6 +2926,14 @@
                                 '<td>' + (isCurrent ? '' : '<button type="button" class="icon-btn" onclick="appViewLom(\'' + h.id + '\')">View</button>') + '</td></tr>';
                         }).join('') + '</tbody></table>';
                 }
+                html += '<h4 style="margin-top:15px;">DPAS Priority Rating</h4>' +
+                    '<div class="form-row"><div><label for="po-dpas-edit">Rating</label><input id="po-dpas-edit" type="text" maxlength="6" placeholder="DO-A1 / DX-A7 (blank = not rated)" style="text-transform:uppercase;" value="' + (order && order.priority_rating ? appFmt(order.priority_rating) : '') + '"></div>' +
+                    '<div><label for="po-dpas-edit-received">Rated order received</label><input id="po-dpas-edit-received" type="date" value="' + (order && order.rated_order_received_date ? order.rated_order_received_date : '') + '"></div></div>' +
+                    '<div class="form-row"><div><label for="po-dpas-edit-status">Your response</label><select id="po-dpas-edit-status">' +
+                    ['pending', 'accepted', 'rejected'].map(function (v) { return '<option value="' + v + '"' + (order && order.rated_acceptance_status === v ? ' selected' : '') + '>' + v + '</option>'; }).join('') + '</select></div>' +
+                    '<div style="align-self:end;"><button type="button" class="icon-btn" onclick="appSaveDpas(\'' + id + '\')">Save DPAS</button></div></div>' +
+                    (order && order.priority_rating ? '<p style="font-size:0.85rem; margin:6px 0 0;">' + appDpasBadge(order) + (order.rated_acceptance_due_date ? ' &nbsp;Deadline: ' + appFmtDate(order.rated_acceptance_due_date) : '') + '</p>' : '') +
+                    '<p style="font-size:0.78rem; color:var(--text-muted); margin:6px 0 0;">Deadline counts weekdays only and does not exclude federal holidays, so confirm against the calendar. Under 15 CFR 700.13 a rated order must be accepted or rejected within 15 working days (DO) or 10 (DX), and a rejection must state its reasons in writing.</p>';
                 html += '<h4 style="margin-top:15px;">Lines</h4>';
                 html += (lines && lines.length) ?
                     '<table class="app-row-table"><thead><tr><th>#</th><th>Description</th><th>Part #</th><th>Qty</th><th>Long-Lead</th><th></th></tr></thead><tbody>' +
@@ -3062,6 +3077,8 @@
                     vendor_contact: document.getElementById('po-contact').value.trim() || null,
                     po_number: document.getElementById('po-number').value.trim() || null,
                     expected_date: document.getElementById('po-expected').value || null,
+                    priority_rating: document.getElementById('po-dpas').value.trim().toUpperCase() || null,
+                    rated_order_received_date: document.getElementById('po-dpas-received').value || null,
                     lines: lines
                 });
                 appShowMessage('Procurement order created.', 'success');
@@ -3070,9 +3087,44 @@
                 document.getElementById('po-contact').value = '';
                 document.getElementById('po-number').value = '';
                 document.getElementById('po-expected').value = '';
+                document.getElementById('po-dpas').value = '';
+                document.getElementById('po-dpas-received').value = '';
                 appLoadProcurementOrders();
             } catch (e) {
                 appShowMessage('Could not create order: ' + e.message, 'error');
+            }
+        }
+        // ---- DPAS rated-order helpers ----
+        function appDpasDaysLeft(p) {
+            if (!p.priority_rating || p.rated_acceptance_status !== 'pending' || !p.rated_acceptance_due_date) return null;
+            const due = new Date(p.rated_acceptance_due_date + 'T00:00:00');
+            const today = new Date(); today.setHours(0, 0, 0, 0);
+            return Math.round((due - today) / 86400000);
+        }
+        function appDpasBadge(p) {
+            if (!p.priority_rating) return '';
+            const left = appDpasDaysLeft(p);
+            let cls = 'good', note = '';
+            if (p.rated_acceptance_status === 'accepted') note = ' accepted';
+            else if (p.rated_acceptance_status === 'rejected') { cls = 'warn'; note = ' rejected'; }
+            else if (left !== null) {
+                if (left < 0) { cls = 'warn'; note = ' response overdue'; }
+                else if (left <= 3) { cls = 'warn'; note = ' respond in ' + left + 'd'; }
+                else note = ' respond by ' + appFmtDate(p.rated_acceptance_due_date);
+            }
+            return '<span class="app-status-pill ' + cls + '" title="DPAS rated order">' + appFmt(p.priority_rating) + note + '</span>';
+        }
+        async function appSaveDpas(id) {
+            const rating = document.getElementById('po-dpas-edit').value.trim().toUpperCase();
+            const recv = document.getElementById('po-dpas-edit-received').value || null;
+            const acc = document.getElementById('po-dpas-edit-status').value || null;
+            try {
+                await appInvokeFn('procurement', { action: 'set_dpas', procurement_order_id: id, priority_rating: rating || null, rated_order_received_date: recv, acceptance_status: rating ? acc : null });
+                appShowMessage(rating ? 'DPAS rating saved.' : 'DPAS rating cleared.', 'success');
+                appLoadProcurementOrders();
+                appViewPo(id);
+            } catch (e) {
+                appShowMessage('Could not save DPAS rating: ' + e.message, 'error');
             }
         }
         async function appLoadProcurementOrders() {
@@ -3084,13 +3136,13 @@
                 if (!data || data.length === 0) { el.innerHTML = '<div class="builder-empty">No procurement orders yet.</div>'; return; }
                 const STALE_DAYS = 14;
                 const STALE_STATUSES = ['received', 'stocked', 'cancelled'];
-                el.innerHTML = '<table class="app-row-table"><thead><tr><th>Vendor</th><th>PO #</th><th>Status</th><th>Expected</th><th></th></tr></thead><tbody>' +
+                el.innerHTML = '<table class="app-row-table"><thead><tr><th>Vendor</th><th>PO #</th><th>Status</th><th>DPAS</th><th>Expected</th><th></th></tr></thead><tbody>' +
                     data.map(function (p) {
                         const ageDays = (Date.now() - new Date(p.created_at).getTime()) / 86400000;
                         const isStale = STALE_STATUSES.indexOf(p.status) === -1 && ageDays > STALE_DAYS;
                         const statusPill = '<span class="app-status-pill' + (isStale ? ' warn' : '') + '">' + appFmt(p.status) + '</span>' +
                             (isStale ? ' <span class="app-status-pill warn" title="Open ' + Math.floor(ageDays) + ' days with no update">Stale</span>' : '');
-                        return '<tr><td>' + appFmt(p.vendor_name) + '</td><td>' + appFmt(p.po_number) + '</td><td>' + statusPill + '</td><td>' + appFmtDate(p.expected_date) +
+                        return '<tr><td>' + appFmt(p.vendor_name) + '</td><td>' + appFmt(p.po_number) + '</td><td>' + statusPill + '</td><td>' + (appDpasBadge(p) || '&mdash;') + '</td><td>' + appFmtDate(p.expected_date) +
                             '</td><td><button type="button" class="icon-btn" onclick="appViewPo(\'' + p.id + '\')">View</button></td></tr>';
                     }).join('') + '</tbody></table>';
             } catch (e) {

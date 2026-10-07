@@ -3,10 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 
 const audiences = [
-  { icon: 'shield', title: 'Government Contractor', copy: 'BOM baselines, variance, DoD hand-receipt forms, and DPAS-aware procurement tracking.', href: '/solutions#government' },
+  { icon: 'building', title: 'Commercial Business', copy: 'Procurement, inventory, reorder points, and freight visibility without the ERP price tag.', href: '/solutions#commercial' },
   { icon: 'truck', title: 'Carrier / Fleet', copy: 'Billing & POD extraction, driver qualification tracking, maintenance and settlements.', href: '/solutions#carrier' },
-  { icon: 'building', title: 'Commercial Business', copy: 'Procurement, inventory, and reorder points without the ERP price tag.', href: '/solutions#commercial' },
   { icon: 'users', title: 'Individual / Owner-Operator', copy: 'A simple way to track materials, orders, and paperwork without a back office.', href: '/solutions#individual' },
+  { icon: 'shield', title: 'Government Contractor', copy: 'Locked LOM baselines, DPAS priority-rated orders, and DoD hand-receipt forms.', href: '/solutions#government' },
 ];
 ---
 <BaseLayout title="Home">
@@ -15,8 +15,8 @@ const audiences = [
     <div class="wrap hero-split">
       <div>
         <span class="eyebrow"><Icon name="bolt" size={14} /> JECON Platform</span>
-        <h1>AI does the paperwork.<br>You make the decisions.</h1>
-        <p class="lede">Upload a bill of materials, invoice, or proof-of-delivery in almost any format. The JECON Platform reads it, tracks changes, and drafts the next step — reorders, hand receipts, settlements. Nothing moves until a person approves it.</p>
+        <h1>Supply chain management,<br>without the paperwork.</h1>
+        <p class="lede">Procurement, inventory, freight, and fleet operations in one place. Upload a list of materials, invoice, or proof-of-delivery in almost any format — the JECON Platform reads it, tracks changes, and drafts the next step. AI does the paperwork; nothing moves until a person approves it.</p>
         <div class="btn-row">
           <a href="/signup" class="btn">Create Account</a>
           <a href="/platform" class="btn secondary">See How It Works</a>
@@ -24,7 +24,7 @@ const audiences = [
       </div>
       <div class="hero-art" aria-hidden="true">
         <div class="hero-card">
-          <div class="hero-card-row"><Icon name="doc" size={18} /><span>BOM_2026-04.xlsx</span><span class="mini-badge">Read</span></div>
+          <div class="hero-card-row"><Icon name="doc" size={18} /><span>LOM_2026-04.xlsx</span><span class="mini-badge">Read</span></div>
           <div class="hero-card-row"><Icon name="chart" size={18} /><span>Variance: 3 lines changed</span><span class="mini-badge">Flagged</span></div>
           <div class="hero-card-row"><Icon name="clipboard" size={18} /><span>Reorder draft — Item #4471</span><span class="mini-badge pending">Needs approval</span></div>
         </div>
@@ -54,7 +54,7 @@ const audiences = [
         <div>
           <span class="eyebrow">Backed by real operations</span>
           <h2 style="margin-bottom: 12px;">Built by a company that has run this on paper for years.</h2>
-          <p style="margin-bottom: 20px;">JECON LLC has managed federal logistics and program execution since 2017 — warehousing, transportation, compliance, and audit-ready governance. The JECON Platform is that operating discipline, built into software.</p>
+          <p style="margin-bottom: 20px;">JECON LLC has run supply chain, warehousing, transportation, and compliance programs since 2017 — for commercial customers and, where the requirements are strictest, for the federal government. The JECON Platform is that operating discipline, built into software.</p>
           <a href="/services" class="btn secondary">See our services</a>
         </div>
         <div class="stats-strip" style="grid-template-columns: repeat(2, 1fr);">

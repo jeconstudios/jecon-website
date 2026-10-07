@@ -45,7 +45,7 @@ const lmsTiers = [
   {
     name: 'Starter', price: '$29', period: '/mo', annualPrice: '$290', annualPeriod: '/yr', note: 'No per-user or per-project caps',
     features: [
-      'BOM ingestion (baseline)',
+      'LOM ingestion (baseline)',
       'Inventory & warehouse locations',
       'Reorder point alerts',
       'Unlimited AI document processing',
@@ -56,10 +56,11 @@ const lmsTiers = [
     name: 'Professional', price: '$299', period: '/mo', annualPrice: '$2,990', annualPeriod: '/yr', note: 'Unlimited active projects',
     features: [
       'Everything in Starter, plus:',
-      'BOM baseline control & variance detection',
+      'LOM baseline control & variance detection',
       'Long-lead item analysis',
       'Procurement tracking',
       'Hand receipts & property transfers',
+      'DPAS priority-rating tracking on procurement orders',
       'Freight visibility',
       'Unlimited AI document processing',
     ],
@@ -136,7 +137,7 @@ const lmsTiers = [
   <section class="section">
     <div class="wrap">
       <span class="eyebrow"><Icon name="chart" size={14} /> Logistics Management (LMS)</span>
-      <h2 style="margin-bottom:20px;">BOM, procurement, and warehouse control in one system.</h2>
+      <h2 style="margin-bottom:20px;">LOM, procurement, and warehouse control in one system.</h2>
       <div class="tier-grid" style="grid-template-columns: repeat(3, 1fr);">
         {lmsTiers.map((t) => (
           <div class={`tier-card ${t.featured ? 'featured' : ''}`}>
