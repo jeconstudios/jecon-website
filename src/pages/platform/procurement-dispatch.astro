@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeatureBody from '../../components/FeatureBody.astro';
+---
+<BaseLayout title="Procurement & Dispatch" description="Automated freight quoting, dynamic purchase order generation, and carrier rate-shopping, with every order and tender approved by a person.">
+  <FeatureBody
+    eyebrow="Platform · Procurement & Dispatch"
+    icon="route"
+    title="From reorder point to booked truck, with you approving each step."
+    lede="JECON drafts the purchase order when stock crosses its reorder point, then helps you move the freight: request quotes, compare carriers on the full landed cost, and tender the load. Nothing is ordered or tendered until someone approves it."
+    stats={[
+      'Draft POs from reorder points, lead times, MOQs, and price breaks',
+      'Freight quote requests by lane, weight, class, and accessorials',
+      'Carrier comparison on linehaul, fuel surcharge, accessorials, and transit days',
+      'Approval gate before any PO or tender goes out',
+    ]}
+    featuresTitle="Procurement and freight, connected"
+    features={[
+      { icon: 'bolt', status: 'available', title: 'Reorder points and draft reorders', copy: 'AI-suggested reorder levels per item. When stock crosses the point, a draft reorder waits for your approval. It never orders on its own.' },
+      { icon: 'clipboard', status: 'available', title: 'Procurement tracking', copy: 'Track each order from quote to stocked with expected dates, exception flags, stale-update reminders, and DPAS priority ratings on rated orders.' },
+      { icon: 'compass', status: 'available', title: 'Long-lead analysis', copy: 'Configurable lead-time thresholds flag long-lead items, each estimate labeled AI estimate, supplier-quoted, confirmed, or manual.' },
+      { icon: 'doc', status: 'building', title: 'Dynamic PO generation', copy: 'Build the PO from demand, vendor lead time, minimum order quantity, case pack, and price breaks, grouped by vendor into a single draft for approval.' },
+      { icon: 'truck', status: 'planned', title: 'Automated freight quoting', copy: 'Send quote requests to your carriers by lane, weight, freight class, and accessorials such as liftgate or appointment delivery, and collect the responses in one place.' },
+      { icon: 'chart', status: 'planned', title: 'Carrier rate-shopping', copy: 'Compare quotes on linehaul, fuel surcharge, accessorials, and transit days. Choose the carrier yourself, or set a rule and approve the selection.' },
+    ]}
+    stepsTitle="From low stock to a loaded truck"
+    steps={[
+      { title: 'Stock hits the reorder point', copy: 'JECON drafts the PO by vendor, using lead time, MOQ, and price breaks. A buyer reviews and approves.' },
+      { title: 'Shop the freight', copy: 'Request quotes for the inbound or outbound lane and compare carriers on total cost and transit days.' },
+      { title: 'Tender and track', copy: 'Approve the carrier, tender the load, and follow the ETA against the PO until it is received.' },
+    ]}
+    related={[
+      { href: '/platform/supplier-portal', label: 'Supplier Portal' },
+      { href: '/solutions/wholesale-distributors', label: 'Wholesale Distributors' },
+      { href: '/integrations', label: 'Integrations' },
+    ]}
+  />
+</BaseLayout>

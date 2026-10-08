@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeatureBody from '../../components/FeatureBody.astro';
+---
+<BaseLayout title="B2B Hub" description="A client portal where your buyers track live shipments, see available inventory, and pay invoices without calling your office.">
+  <FeatureBody
+    eyebrow="Platform · B2B Hub"
+    icon="building"
+    title="Let your customers answer their own “where's my order?”"
+    lede="Give each buyer a login to their own account. They see open orders and shipment status, check what's available to ship, and pay what they owe, so your team stops fielding status calls."
+    stats={[
+      'Shipment tracking by order, PRO, or tracking number',
+      'Available-to-ship inventory limited to what you expose',
+      'Invoice list, statements, and online payment',
+      'Every buyer sees only their own records',
+    ]}
+    featuresTitle="What your buyers can do"
+    features={[
+      { icon: 'users', status: 'available', title: 'Client portal accounts', copy: 'Separate logins for clients and drivers, scoped to their own loads and documents, with fraud and identity vetting kept in place for brokers.' },
+      { icon: 'truck', status: 'available', title: 'Shipment and check-call status', copy: 'Status, check calls, and ETAs recorded against each load are visible to the client on that load.' },
+      { icon: 'box', status: 'building', title: 'Live inventory view', copy: 'Buyers see on-hand and available-to-promise quantities by SKU, with location detail hidden unless you choose to share it.' },
+      { icon: 'clipboard', status: 'building', title: 'Order history and reorder', copy: 'Past orders, open backorders, and a one-click reorder that creates a draft order for your team to approve.' },
+      { icon: 'doc', status: 'building', title: 'Invoices and proof of delivery', copy: 'Invoices link to the signed POD and the BOL, so a disputed charge is answered with the document, not a phone call.' },
+      { icon: 'bolt', status: 'planned', title: 'Online invoice payment', copy: 'Card and ACH payment from the invoice, with the payment posting back to the account. Payment processing for your invoices is on the roadmap; JECON subscription billing already runs on Stripe.' },
+    ]}
+    stepsTitle="How buyers get access"
+    steps={[
+      { title: 'You invite the account', copy: 'Add the customer, choose what they can see, and send the invite. Access is limited to their own orders and shipments.' },
+      { title: 'They self-serve', copy: 'Buyers check shipment status, review inventory, and download documents on their own schedule.' },
+      { title: 'You get paid faster', copy: 'Invoices, PODs, and statements live in one place so there is less back-and-forth before payment.' },
+    ]}
+    related={[
+      { href: '/platform/procurement-dispatch', label: 'Procurement & Dispatch' },
+      { href: '/solutions/wholesale-distributors', label: 'Wholesale Distributors' },
+      { href: '/integrations', label: 'Integrations' },
+    ]}
+  />
+</BaseLayout>

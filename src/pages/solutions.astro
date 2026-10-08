@@ -57,13 +57,32 @@ const segments = [
   },
 ];
 ---
-<BaseLayout title="Solutions" description="JECON Platform solutions by audience: commercial businesses, carriers and fleets, individuals, and government contractors.">
+<BaseLayout title="Solutions" description="JECON solutions by operation (3PL, wholesale distribution, eCommerce fulfillment) and by audience: commercial businesses, carriers and fleets, individuals, and government contractors.">
 
   <section class="section-tight">
     <div class="wrap">
       <span class="eyebrow"><Icon name="compass" size={14} /> Solutions</span>
-      <h1>The same platform, tuned to how you work.</h1>
+      <h1>One supply chain platform, tuned to how your operation runs.</h1>
       <p class="lede">Every segment gets the same audit trail and human-approval model underneath — the difference is which pieces come front and center.</p>
+    </div>
+  </section>
+
+  <section class="section" style="background:#eef2ff; padding-top:40px;">
+    <div class="wrap">
+      <span class="eyebrow">By operation</span>
+      <div class="grid grid-auto" style="margin-top:16px;">
+        {[
+          { href: '/solutions/3pl', icon: 'layers', title: '3PL Providers', copy: 'Multi-client inventory, receiving, and shipping.' },
+          { href: '/solutions/wholesale-distributors', icon: 'building', title: 'Wholesale Distributors', copy: 'Reorder points, vendor POs, and ship-to-account.' },
+          { href: '/solutions/ecommerce-fulfillment', icon: 'bolt', title: 'eCommerce Fulfillment', copy: 'Scan-confirmed pick-and-pack at volume.' },
+        ].map((f) => (
+          <a href={f.href} class="card" style="display:block;">
+            <div class="icon-tile"><Icon name={f.icon} /></div>
+            <h3>{f.title}</h3>
+            <p style="margin:0; font-size:0.92rem;">{f.copy}</p>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 

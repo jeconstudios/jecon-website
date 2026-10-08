@@ -2,14 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 ---
-<BaseLayout title="Platform" description="The JECON Platform: AI-assisted logistics management (Module B) and fleet operations (Module A, early access), with every AI action reviewed by a person.">
+<BaseLayout title="Platform" description="JECON is an all-in-one supply chain management platform: LOM control, procurement, inventory, freight, supplier and buyer portals, and warehouse mobile, with every AI action approved by a person.">
 
   <section class="section-tight">
     <div class="wrap hero-split">
       <div>
         <span class="eyebrow"><Icon name="layers" size={14} /> Overview</span>
-        <h1>One account. Two modules. Every AI action reviewed by a person.</h1>
-        <p class="lede">The AI reads documents, compares them against what's already on file, and proposes the next step. Nothing changes a baseline, places an order, or transfers property until someone approves it — and every action is recorded.</p>
+        <h1>One system for materials, inventory, purchasing, and freight.</h1>
+        <p class="lede">JECON replaces the spreadsheets, shared inboxes, and phone calls between your suppliers, warehouse, carriers, and customers. The AI reads documents, compares them against what's already on file, and proposes the next step. Nothing changes a baseline, places an order, or transfers property until someone approves it — and every action is recorded.</p>
         <div class="btn-row">
           <a href="/signup" class="btn">Create Account</a>
           <a href="/pricing" class="btn secondary">View Pricing</a>
@@ -18,6 +18,28 @@ import Icon from '../components/Icon.astro';
       <div class="icon-tile" style="width:100%; height:220px; border-radius:20px;" aria-hidden="true">
         <Icon name="bolt" size={64} />
       </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:#eef2ff;">
+    <div class="wrap">
+      <span class="eyebrow">Explore the platform</span>
+      <h2>Four ways JECON reaches past your own four walls</h2>
+      <div class="grid grid-auto" style="margin-top:24px;">
+        {[
+          { href: '/platform/supplier-portal', icon: 'users', title: 'Supplier Portal', copy: 'Vendors accept POs, post ship ETAs, and upload compliance documents.' },
+          { href: '/platform/warehouse-mobile', icon: 'box', title: 'Warehouse & Mobile', copy: 'Barcode receiving, pick-and-pack, and driver proof of delivery.' },
+          { href: '/platform/b2b-hub', icon: 'building', title: 'B2B Hub', copy: 'Buyers track shipments, check inventory, and pay invoices.' },
+          { href: '/platform/procurement-dispatch', icon: 'route', title: 'Procurement & Dispatch', copy: 'Draft POs, freight quotes, and carrier rate-shopping.' },
+        ].map((f) => (
+          <a href={f.href} class="card" style="display:block;">
+            <div class="icon-tile"><Icon name={f.icon} /></div>
+            <h3>{f.title}</h3>
+            <p style="margin:0; font-size:0.92rem;">{f.copy}</p>
+          </a>
+        ))}
+      </div>
+      <p style="margin-top:18px; font-size:0.88rem;">Each page labels what is available now, in development, or planned. See also <a href="/integrations" style="font-weight:700; color:var(--royal);">Integrations</a>.</p>
     </div>
   </section>
 

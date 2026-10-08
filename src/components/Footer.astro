@@ -7,11 +7,27 @@
       <p>info@jeconllc.com<br>+1 (520) 355-2306</p>
     </div>
     <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="/platform">Overview</a>
+      <a href="/platform/supplier-portal">Supplier Portal</a>
+      <a href="/platform/warehouse-mobile">Warehouse & Mobile</a>
+      <a href="/platform/b2b-hub">B2B Hub</a>
+      <a href="/platform/procurement-dispatch">Procurement & Dispatch</a>
+    </div>
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <a href="/solutions">All solutions</a>
+      <a href="/solutions/3pl">3PL Providers</a>
+      <a href="/solutions/wholesale-distributors">Wholesale Distributors</a>
+      <a href="/solutions/ecommerce-fulfillment">eCommerce Fulfillment</a>
+      <a href="/solutions#government">Government Contractors</a>
+    </div>
+    <div class="footer-col">
       <h4>Product</h4>
-      <a href="/platform">JECON Platform</a>
-      <a href="/solutions">Solutions</a>
+      <a href="/integrations">Integrations</a>
       <a href="/pricing">Pricing</a>
       <a href="/signup">Create Account</a>
+      <a href="/signin">Sign In</a>
     </div>
     <div class="footer-col">
       <h4>Company</h4>
@@ -31,7 +47,7 @@
 
 <style>
   .site-footer { background: var(--navy); color: #cbd5e1; padding: 56px 0 28px; margin-top: 40px; }
-  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
   .footer-logo { display: inline-block; background: #fff; border-radius: 10px; padding: 8px 12px; margin-bottom: 16px; }
   .footer-logo img { height: 36px; width: auto; display: block; }
   .footer-col h4 { color: white; margin-bottom: 16px; font-size: 0.95rem; }
@@ -47,7 +63,8 @@
   .legal-links a { color: #94a3b8; font-size: 0.82rem; }
   .legal-links a:hover { color: white; text-decoration: underline; }
   @media (max-width: 900px) {
-    .footer-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-col:first-child { grid-column: 1 / -1; }
     .legal-row { flex-direction: column; text-align: center; }
   }
 </style>

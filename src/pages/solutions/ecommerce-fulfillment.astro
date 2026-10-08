@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeatureBody from '../../components/FeatureBody.astro';
+---
+<BaseLayout title="eCommerce Fulfillment" description="Supply chain software for high-volume eCommerce fulfillment: fast pick-and-pack, inventory accuracy, and carrier selection.">
+  <FeatureBody
+    eyebrow="Solutions · eCommerce Fulfillment"
+    icon="bolt"
+    title="Ship the order today, and never sell stock you don't have."
+    lede="When orders turn over in hours, the pick path, the count, and the label decide your cutoff. JECON is built to keep inventory accurate at the bin, pick and pack fast with scan confirmation, and pick the right carrier for each parcel."
+    stats={[
+      'Scan-confirmed picks and pack-out',
+      'Bin-level accuracy with cycle counts',
+      'Reorder alerts before a SKU stocks out',
+      'Carrier and label selection per order',
+    ]}
+    featuresTitle="Built around rapid-turnover orders"
+    features={[
+      { icon: 'box', status: 'available', title: 'Bin-level inventory', copy: 'Every SKU tied to a labeled location, with cycle counts and reviewed adjustments to keep book and physical aligned.' },
+      { icon: 'bolt', status: 'available', title: 'Reorder points', copy: 'Reorder levels per SKU with a draft reorder when stock crosses the line.' },
+      { icon: 'check', status: 'building', title: 'Wave and batch picking', copy: 'Group open orders into pick lists by zone. Scan bin, then item; short picks are flagged immediately.' },
+      { icon: 'clipboard', status: 'building', title: 'Pack-out and labels', copy: 'Confirm items, record carton and weight, and attach the carrier label and tracking number to the order.' },
+      { icon: 'building', status: 'planned', title: 'Storefront order import', copy: 'Pull orders from your storefront and push inventory levels back, so you stop overselling. See Integrations for status.' },
+      { icon: 'route', status: 'planned', title: 'Carrier rate-shopping', copy: 'Compare parcel and LTL rates by weight, dimensions, and service level to choose the cheapest option that meets the promise date.' },
+    ]}
+    stepsTitle="Order to doorstep"
+    steps={[
+      { title: 'Order in', copy: 'Orders arrive by upload today; storefront sync is on the roadmap.' },
+      { title: 'Pick and pack', copy: 'Pickers scan to confirm. Packers weigh, label, and close the order.' },
+      { title: 'Ship and replenish', copy: 'Tracking posts back to the order, and stock levels trigger reorders.' },
+    ]}
+    related={[
+      { href: '/platform/warehouse-mobile', label: 'Warehouse & Mobile' },
+      { href: '/integrations', label: 'Integrations' },
+      { href: '/pricing', label: 'Pricing' },
+    ]}
+  />
+</BaseLayout>

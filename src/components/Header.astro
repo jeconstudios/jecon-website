@@ -1,8 +1,28 @@
 ---
 const { pathname } = Astro.url;
 const nav = [
-  { href: '/platform', label: 'Platform' },
-  { href: '/solutions', label: 'Solutions' },
+  {
+    href: '/platform', label: 'Platform',
+    children: [
+      { href: '/platform', label: 'Platform overview', desc: 'LOM control, procurement, inventory, freight' },
+      { href: '/platform/supplier-portal', label: 'Supplier Portal', desc: 'PO acceptance, ship ETAs, compliance documents' },
+      { href: '/platform/warehouse-mobile', label: 'Warehouse & Mobile', desc: 'Scan, pick-and-pack, proof of delivery' },
+      { href: '/platform/b2b-hub', label: 'B2B Hub', desc: 'Buyer shipment tracking, inventory, invoices' },
+      { href: '/platform/procurement-dispatch', label: 'Procurement & Dispatch', desc: 'Freight quotes, dynamic POs, rate-shopping' },
+    ],
+  },
+  {
+    href: '/solutions', label: 'Solutions',
+    children: [
+      { href: '/solutions', label: 'All solutions', desc: 'By operation and by industry' },
+      { href: '/solutions/3pl', label: '3PL Providers', desc: 'Multi-client inventory and billing' },
+      { href: '/solutions/wholesale-distributors', label: 'Wholesale Distributors', desc: 'Stock, reorder, and ship to account' },
+      { href: '/solutions/ecommerce-fulfillment', label: 'eCommerce Fulfillment', desc: 'High-volume, rapid-turnover orders' },
+      { href: '/solutions#carrier', label: 'Carriers & Fleets', desc: 'DispatchOps AI' },
+      { href: '/solutions#government', label: 'Government Contractors', desc: 'DPAS ratings and hand receipts' },
+    ],
+  },
+  { href: '/integrations', label: 'Integrations' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/services', label: 'Services' },
   { href: '/contact', label: 'Contact' },
@@ -14,7 +34,16 @@ const isActive = (href) => pathname === href || pathname.startsWith(href + '/');
     <a href="/" class="logo" aria-label="JECON home"><img src="https://static.wixstatic.com/media/144921_52f55b00f95d42e9be96c7aead3b739d~mv2.png" alt="JECON" height="40" /></a>
 
     <nav class="main-nav" aria-label="Primary">
-      {nav.map((item) => (
+      {nav.map((item) => item.children ? (
+        <div class="nav-item has-menu">
+          <a href={item.href} class={isActive(item.href) ? 'active' : ''} aria-haspopup="true">{item.label}<span class="caret" aria-hidden="true"></span></a>
+          <div class="dropdown" role="menu">
+            {item.children.map((c) => (
+              <a href={c.href} role="menuitem"><strong>{c.label}</strong><span>{c.desc}</span></a>
+            ))}
+          </div>
+        </div>
+      ) : (
         <a href={item.href} class={isActive(item.href) ? 'active' : ''}>{item.label}</a>
       ))}
     </nav>
@@ -30,7 +59,14 @@ const isActive = (href) => pathname === href || pathname.startsWith(href + '/');
   </div>
 
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
-    {nav.map((item) => (
+    {nav.map((item) => item.children ? (
+      <details class="mobile-group" open={isActive(item.href)}>
+        <summary>{item.label}</summary>
+        {item.children.map((c) => (
+          <a href={c.href} class="mobile-sub">{c.label}</a>
+        ))}
+      </details>
+    ) : (
       <a href={item.href} class={isActive(item.href) ? 'active' : ''}>{item.label}</a>
     ))}
     <div class="mobile-nav-actions">
@@ -50,12 +86,26 @@ const isActive = (href) => pathname === href || pathname.startsWith(href + '/');
   .header-inner { display: flex; align-items: center; gap: 32px; padding: 16px 24px; }
   .logo { display: flex; align-items: center; margin-right: auto; }
   .logo img { height: 40px; width: auto; display: block; }
-  .main-nav { display: flex; gap: 28px; }
+  .main-nav { display: flex; gap: 28px; align-items: center; }
   .main-nav a {
     color: var(--text-muted); font-weight: 600; font-size: 0.94rem;
     padding: 6px 2px; border-bottom: 2px solid transparent; transition: 0.15s;
   }
   .main-nav a:hover, .main-nav a.active { color: var(--navy); border-bottom-color: var(--royal); }
+  .nav-item { position: relative; display: flex; align-items: center; }
+  .caret { display: inline-block; width: 6px; height: 6px; margin-left: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); }
+  .dropdown {
+    display: none; position: absolute; top: 100%; left: -16px; min-width: 300px; padding: 10px;
+    background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-sm); box-shadow: var(--shadow-lg);
+  }
+  .nav-item.has-menu::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 12px; }
+  .nav-item:hover .dropdown, .nav-item:focus-within .dropdown { display: block; }
+  .main-nav .dropdown a { display: block; padding: 10px 12px; border-bottom: none; border-radius: 8px; }
+  .main-nav .dropdown a:hover { background: #eef2ff; }
+  .dropdown a strong { display: block; color: var(--navy); font-size: 0.92rem; }
+  .dropdown a span { display: block; color: var(--text-muted); font-size: 0.8rem; font-weight: 500; margin-top: 2px; }
+  .mobile-group summary { padding: 12px 4px; font-weight: 600; color: var(--text-main); cursor: pointer; }
+  .mobile-nav a.mobile-sub { padding: 8px 4px 8px 18px; font-weight: 500; color: var(--text-muted); display: block; }
   .header-actions { display: flex; align-items: center; gap: 18px; }
   .header-signin { font-weight: 700; color: var(--navy); font-size: 0.94rem; }
   .header-cta { padding: 11px 20px; font-size: 0.9rem; }

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeatureBody from '../../components/FeatureBody.astro';
+---
+<BaseLayout title="Warehouse & Mobile" description="Mobile execution for warehouse staff and drivers: barcode scanning, receiving, pick-and-pack, proof of delivery, and GPS routing.">
+  <FeatureBody
+    eyebrow="Platform · Warehouse & Mobile"
+    icon="box"
+    title="Run the floor and the truck from a phone."
+    lede="Receivers, pickers, and drivers work from the same record the office sees. Scan the bin, scan the item, confirm the quantity; capture the signature at the dock. No clipboards to re-key at the end of the shift."
+    stats={[
+      'Receive against the PO: scan, count, flag over/short/damaged',
+      'Pick lists by zone with bin-to-item scan confirmation',
+      'Pack-out with carton, weight, and carrier label',
+      'Driver proof of delivery: signature, photo, and exceptions',
+    ]}
+    featuresTitle="Warehouse staff and drivers"
+    features={[
+      { icon: 'box', status: 'available', title: 'Bin hierarchy and labels', copy: 'Site, zone, aisle, rack, and bin locations with custom location types, plus barcode and QR labels to print and apply.' },
+      { icon: 'clipboard', status: 'available', title: 'Cycle counts', copy: 'Count by location, record the variance against book quantity, and review adjustments before they post.' },
+      { icon: 'doc', status: 'building', title: 'Mobile receiving', copy: 'Scan the label, match to the open PO line, enter the received quantity, and flag overage, shortage, or damage with a photo. Exceptions route to the buyer.' },
+      { icon: 'check', status: 'building', title: 'Pick-and-pack', copy: 'Pick lists grouped by zone. The picker scans the bin, then the item, and confirms the quantity. Short picks are flagged immediately. Pack-out records carton, weight, and tracking.' },
+      { icon: 'route', status: 'building', title: 'Driver proof of delivery', copy: 'Capture consignee signature, delivery photos, and exceptions such as refused, damaged, or short. The POD attaches to the load and the invoice.' },
+      { icon: 'compass', status: 'planned', title: 'GPS routing and stop sequencing', copy: 'Truck-legal routing and stop order for drivers, using a routing provider. Offline-tolerant scanning is also on the roadmap.' },
+    ]}
+    stepsTitle="A day on the floor"
+    steps={[
+      { title: 'Receive', copy: 'Dock staff scan inbound freight against the PO. Exceptions go to the buyer as they happen.' },
+      { title: 'Pick and pack', copy: 'Open orders become zone pick lists. Scans confirm each pick; pack-out closes the order for shipment.' },
+      { title: 'Deliver and prove it', copy: 'Drivers capture POD at the stop. The office sees delivery status and can invoice from the signed document.' },
+    ]}
+    related={[
+      { href: '/platform/b2b-hub', label: 'B2B Hub' },
+      { href: '/solutions/ecommerce-fulfillment', label: 'eCommerce Fulfillment' },
+      { href: '/solutions/3pl', label: '3PL Providers' },
+    ]}
+  />
+</BaseLayout>

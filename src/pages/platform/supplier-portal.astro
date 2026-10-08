@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeatureBody from '../../components/FeatureBody.astro';
+---
+<BaseLayout title="Supplier Portal" description="A vendor-facing portal where suppliers accept purchase orders, update ship dates and ETAs, and upload compliance documents, so buyers stop chasing status by email.">
+  <FeatureBody
+    eyebrow="Platform · Supplier Portal"
+    icon="users"
+    title="Get every supplier on the same PO, without the email chase."
+    lede="Suppliers get a login scoped to their own purchase orders. They accept or push back on the order, post ship dates and tracking, and upload the certificates you need on file. You see it on the PO line the moment it changes."
+    stats={[
+      'Accept, accept-with-changes, or reject each PO line',
+      'Promised ship date, carrier, tracking/PRO number, and ETA per shipment',
+      'Certificates and insurance with expiration dates',
+      'Late and silent suppliers flagged on the buyer side',
+    ]}
+    featuresTitle="What suppliers and buyers get"
+    features={[
+      { icon: 'clipboard', status: 'building', title: 'PO acceptance', copy: 'Suppliers confirm each line, propose a different quantity, price, or date, or reject with a reason. Changes arrive as a proposed revision for the buyer to approve, never a silent edit to the PO.' },
+      { icon: 'truck', status: 'building', title: 'Ship dates, ETAs, and partials', copy: 'Post promised ship date, carrier, tracking or PRO number, and ETA. Split a line across partial shipments and keep the open balance visible.' },
+      { icon: 'doc', status: 'building', title: 'Compliance document upload', copy: 'Certificates of insurance, W-9, certificates of conformance, material test reports, and country-of-origin statements, each with an expiration date and a reminder before it lapses.' },
+      { icon: 'shield', status: 'available', title: 'DPAS rated-order tracking', copy: 'Record the DO/DX rating and received date on a PO. JECON computes the 15 or 10 working-day acceptance deadline and flags rated orders nearing it. Weekends are excluded; federal holidays are not.' },
+      { icon: 'chart', status: 'available', title: 'Vendor scorecard', copy: 'On-time percentage, average days late, and open-order count per vendor, computed from expected versus actual receipt dates on your procurement orders.' },
+      { icon: 'bolt', status: 'available', title: 'Stale-update reminders', copy: 'The AI reminds buyers about PO lines with no status update past your threshold, so a quiet supplier shows up before the due date, not after.' },
+    ]}
+    stepsTitle="How a PO moves through the portal"
+    steps={[
+      { title: 'Buyer issues the PO', copy: 'Create or approve the PO in JECON. Invite the supplier by email; they get a login limited to their own orders.' },
+      { title: 'Supplier responds', copy: 'The supplier accepts, counters, or rejects each line and posts ship dates. Counters wait for buyer approval.' },
+      { title: 'Receiving closes the loop', copy: 'Freight ETAs feed the open-order view; receipts are reconciled against the PO and roll into the vendor scorecard.' },
+    ]}
+    related={[
+      { href: '/platform/procurement-dispatch', label: 'Procurement & Dispatch' },
+      { href: '/platform/warehouse-mobile', label: 'Warehouse & Mobile' },
+      { href: '/integrations', label: 'Integrations' },
+    ]}
+  />
+</BaseLayout>

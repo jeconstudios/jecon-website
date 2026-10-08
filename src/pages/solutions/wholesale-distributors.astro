@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeatureBody from '../../components/FeatureBody.astro';
+---
+<BaseLayout title="Wholesale Distributors" description="Supply chain software for wholesale distribution: reorder points, vendor lead times, purchase orders, and shipping to account customers.">
+  <FeatureBody
+    eyebrow="Solutions · Wholesale Distribution"
+    icon="building"
+    title="Stay in stock on the SKUs that move, without overbuying the ones that don't."
+    lede="Distributors carry thousands of items against vendor lead times and customer commitments. JECON tracks on-hand and on-order by location, suggests reorder points, and drafts the vendor PO for your buyer to approve."
+    stats={[
+      'On-hand, on-order, and committed by SKU and location',
+      'Reorder points suggested from usage and vendor lead time',
+      'Vendor on-time scorecard',
+      'Customer shipment status and invoices in one portal',
+    ]}
+    featuresTitle="Built around distribution buying and selling"
+    features={[
+      { icon: 'bolt', status: 'available', title: 'Reorder points', copy: 'AI-suggested min/max levels per item with draft reorders for your approval.' },
+      { icon: 'compass', status: 'available', title: 'Long-lead flags', copy: 'See which items carry long vendor lead times before a stockout, with each estimate labeled by source.' },
+      { icon: 'chart', status: 'available', title: 'Vendor scorecard', copy: 'On-time percentage, average days late, and open orders per vendor to guide who you buy from.' },
+      { icon: 'doc', status: 'available', title: 'Variance on price lists', copy: 'Upload a new vendor price list or LOM revision and see quantity, cost, and part-number changes with dollar and percent impact.' },
+      { icon: 'doc', status: 'building', title: 'Dynamic PO generation', copy: 'Group needs by vendor and apply MOQ, case pack, and price breaks to produce one draft PO per vendor.' },
+      { icon: 'users', status: 'building', title: 'Account customer portal', copy: 'Customers check order and shipment status, review available stock, and download invoices and PODs.' },
+    ]}
+    stepsTitle="Buy, stock, ship"
+    steps={[
+      { title: 'See what\'s running low', copy: 'Items crossing a reorder point surface with their vendor lead time and open orders.' },
+      { title: 'Approve the buy', copy: 'Review the draft PO by vendor, adjust quantities, and send. Acceptance and ETAs are tracked against it.' },
+      { title: 'Ship to account', copy: 'Fulfill customer orders and give the customer status without a phone call.' },
+    ]}
+    related={[
+      { href: '/platform/procurement-dispatch', label: 'Procurement & Dispatch' },
+      { href: '/platform/supplier-portal', label: 'Supplier Portal' },
+      { href: '/integrations', label: 'Integrations' },
+    ]}
+  />
+</BaseLayout>

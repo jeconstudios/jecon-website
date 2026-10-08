@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeatureBody from '../components/FeatureBody.astro';
+---
+<BaseLayout title="Integrations" description="How JECON connects to accounting, eCommerce storefronts, EDI trading partners, telematics, and routing providers, with honest status on each.">
+  <FeatureBody
+    eyebrow="Integrations"
+    icon="layers"
+    title="Connect JECON to the systems you already run."
+    lede="Your books, your storefront, and your trading partners already hold the data. JECON is being built to exchange it with them, so orders, invoices, and inventory move without re-keying. Each connection below shows exactly where it stands today."
+    stats={[
+      'Upload Excel, CSV, PDF, or a photo today',
+      'Accounting: bills, invoices, vendors, and items',
+      'Storefronts: orders in, inventory levels out',
+      'EDI: purchase orders, ship notices, and invoices',
+    ]}
+    featuresTitle="Integration status"
+    features={[
+      { icon: 'doc', status: 'available', title: 'Excel, CSV, PDF, and photo import', copy: 'Bring in lists of materials, price lists, packing lists, and POs in the format you already have. The AI extracts them and flags low-confidence fields for review.' },
+      { icon: 'chart', status: 'planned', title: 'QuickBooks Online', copy: 'Push approved vendor bills and customer invoices, and sync vendors and items, so receiving and AP match without double entry.' },
+      { icon: 'building', status: 'planned', title: 'Shopify', copy: 'Import orders and customers, and push on-hand inventory levels back to the storefront to prevent overselling.' },
+      { icon: 'route', status: 'planned', title: 'EDI (X12)', copy: 'Exchange 850 purchase orders, 855 acknowledgements, 856 advance ship notices, 810 invoices, and 214 shipment status with trading partners, through an EDI provider.' },
+      { icon: 'truck', status: 'building', title: 'Telematics: Samsara, Motive, Highway', copy: 'Vehicle location, hours of service, and carrier identity checks for fleet and dispatch users. Connections are scaffolded and activate when you add your provider key.' },
+      { icon: 'compass', status: 'planned', title: 'Truck-legal routing and fuel pricing', copy: 'HERE routing and EIA fuel-price context for dispatch and freight quoting.' },
+    ]}
+    stepsTitle="How we'll roll these out"
+    steps={[
+      { title: 'Read first', copy: 'Each connector starts as a one-way import so you can confirm the data lines up.' },
+      { title: 'Write with approval', copy: 'Pushes to your books or storefront wait for a person to approve, the same as every other JECON action.' },
+      { title: 'Audit everything', copy: 'Every sync is logged with what changed and who approved it.' },
+    ]}
+    ctaTitle="Need a specific connection?"
+    ctaCopy="Tell us which accounting, storefront, EDI, or carrier system you run. It shapes what we build first."
+    related={[
+      { href: '/contact', label: 'Request an integration' },
+      { href: '/platform', label: 'Platform overview' },
+    ]}
+  />
+</BaseLayout>

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeatureBody from '../../components/FeatureBody.astro';
+---
+<BaseLayout title="3PL Providers" description="Supply chain software for third-party logistics providers managing multi-client inventory, receiving, storage, and shipping.">
+  <FeatureBody
+    eyebrow="Solutions · 3PL"
+    icon="layers"
+    title="Run many clients' inventory without mixing it up."
+    lede="A 3PL lives and dies on accuracy by client: whose pallet is in which bin, what was received, what shipped, and what to bill. JECON keeps each client's stock, orders, and documents separate, with a full audit trail behind every adjustment."
+    stats={[
+      'Client-owned stock separated by SKU and location',
+      'Inbound ASN and receiving against client POs',
+      'Cycle counts with reviewed adjustments',
+      'Client-facing shipment and inventory visibility',
+    ]}
+    featuresTitle="Built around the 3PL workflow"
+    features={[
+      { icon: 'box', status: 'available', title: 'Location hierarchy to the bin', copy: 'Site, zone, aisle, rack, and bin with barcode and QR labels, so any pallet or case can be found and counted.' },
+      { icon: 'clipboard', status: 'available', title: 'Cycle counts and audit trail', copy: 'Count by location, review variances before posting, and keep a record of who changed what and when.' },
+      { icon: 'truck', status: 'available', title: 'Freight visibility', copy: 'Track inbound and outbound shipments, ETAs, and what arrived against what was expected.' },
+      { icon: 'users', status: 'building', title: 'Multi-client inventory', copy: 'Assign stock to the client that owns it, with per-client item masters, lot and serial control, and client-scoped views.' },
+      { icon: 'doc', status: 'building', title: 'Receiving and ASN matching', copy: 'Match inbound freight to the client\'s advance ship notice, scan it in, and flag over, short, and damaged for the client.' },
+      { icon: 'chart', status: 'planned', title: 'Storage and handling billing', copy: 'Per-pallet storage, receiving, pick, and pack charges accrued by client for review before invoicing.' },
+    ]}
+    stepsTitle="From inbound dock to client invoice"
+    steps={[
+      { title: 'Receive by client', copy: 'Scan inbound freight against the client\'s expected shipment and put it away to a labeled bin.' },
+      { title: 'Fulfill and ship', copy: 'Pick, pack, and ship against client orders. Shipment status is visible to the client.' },
+      { title: 'Reconcile and bill', copy: 'Count, review variances, and roll activity up by client for billing.' },
+    ]}
+    related={[
+      { href: '/platform/warehouse-mobile', label: 'Warehouse & Mobile' },
+      { href: '/platform/b2b-hub', label: 'B2B Hub' },
+      { href: '/integrations', label: 'Integrations' },
+    ]}
+  />
+</BaseLayout>
